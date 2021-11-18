@@ -8,39 +8,19 @@ class Model_barang extends CI_Model{
     {
 		return $this->db->get('tb_barang');
 	} 
-    
-    function simpan()
+
+    function save($data,$table)
     {
-        $kd = $this->input->post('kd');
-        $nb = $this->input->post('nb');
-        $merk = $this->input->post('merk');
-        $ns = $this->input->post('ns');
-        $kb = $this->input->post('kb');
-        $unit = $this->input->post('unit');
-        $data = array(
-            'kode_barang' => $kd,
-            'nama_barang' => $nb,
-            'merk' => $merk,
-            'no_seri' => $ns,
-            'kondisi_barang' => $kb,
-            'unit' => $unit
-            );
-            $this->db->insert('tb_barang',$data);
+        $this->db->insert('tb_peminjaman',$data);      
     }
-    
     
     function pinjam($where,$table){		
         return $this->db->get_where($table,$where);
     }
-    function updatebarang($where,$data,$table)
-    {
-       $this->db->where($where);
-       $this->db->update ('tb_barang',$data);       
-    }
+
+    function update($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
     
-    function hapus_barang($where,$table){
-        $this->db->where($where);
-        $this->db->delete($table);
     }
-    
 }

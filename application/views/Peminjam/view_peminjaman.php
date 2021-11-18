@@ -13,35 +13,35 @@
                             foreach($tb_barang as $detail){
                         ?>
             
-                        <form action="<?php echo site_url('crudbarang/updatebarangDb'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="<?php echo site_url('peminjam/save'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
                             
                             
                           <div class="row form-group">
-                                <div class="col col-md-3"><label for="kd" class=" form-control-label">Kode Barang</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="kd" name="kd" value="<?php echo $detail->id_barang; ?>" class="form-control" required></div>
+                                <div class="col col-md-3"><label for="id_barang" class=" form-control-label">Kode Barang</label></div>
+                                <div class="col-12 col-md-9"><input type="text" id="id_barang" name="id_barang" value="<?php echo $detail->id_barang; ?>" class="form-control" required></div>
                           </div>
 
                           <div class="row form-group">
-                               <div class="col col-md-3"><label for="nb" class=" form-control-label">Nama Barang</label></div>
-                               <div class="col-12 col-md-9"><input type="text" id="nb" name="nb" value="<?php echo $detail->nama_barang; ?>" class="form-control" required></div>
+                               <div class="col col-md-3"><label for="nama_barang" class=" form-control-label">Nama Barang</label></div>
+                               <div class="col-12 col-md-9"><input type="text" id="nama_barang" name="nama_barang" value="<?php echo $detail->nama_barang; ?>" class="form-control" required></div>
                           </div>
 
                           <div class="row form-group">
-                               <div class="col col-md-3"><label for="merk" class=" form-control-label">Jumlah Pinjam</label></div>
-                               <div class="col-12 col-md-9"><input type="text" id="merk" name="merk" class="form-control" required></div>
+                               <div class="col col-md-3"><label for="jumlah_pinjam" class=" form-control-label">Jumlah Pinjam</label></div>
+                               <div class="col-12 col-md-9"><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" class="form-control" required></div>
                           </div>
                           
                           <div class="row form-group">
-                               <div class="col col-md-3"><label for="ns" class=" form-control-label">Tanggal Pinjam</label></div>
-                               <div class="col-12 col-md-9"><input type="date" id="ns" name="ns" class="form-control" required></div>       
+                               <div class="col col-md-3"><label for="tanggal_pinjam" class=" form-control-label">Tanggal Pinjam</label></div>
+                               <div class="col-12 col-md-9"><input type="date" id="tanggal_pinjam" name="tanggal_pinjam" class="form-control" required></div>       
                           </div>
                           
                           <div class="row form-group"> <!--dibuat dropdown-->
                             <div class="col col-md-3">
-                               <label class="form-control-label" for="kb">Kondisi Barang</label>
+                               <label class="form-control-label" for="kondisi_saat_pinjam">Kondisi Barang</label>
                             </div>
                                <div class="col-12 col-md-9">
-                                    <select id="kb" class="form-control" name="kb">
+                                    <select id="kondisi_saat_pinjam" class="form-control" name="kondisi_saat_pinjam">
                                     <option value="Berfungsi">Berfungsi</option>
                                     <option value="Rusak">Rusak</option>
                                     </select>
