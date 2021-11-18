@@ -14,7 +14,7 @@ class Peminjam extends CI_Controller {
 	function index(){
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar');
-		$this->load->view('peminjam/view_barang');
+		$this->load->view('peminjam/view_beranda');
 		$this->load->view('template/footer');
 	}
 
@@ -24,6 +24,15 @@ class Peminjam extends CI_Controller {
 		$this->load->view('template/sidebar');
 		$this->load->view('peminjam/view_barang', $data);
 		$this->load->view('template/footer');
+    }
+
+	function add($id){
+		$where = array('id_barang' => $id);
+        $data['tb_barang'] = $this->model_barang->pinjam($where,'tb_barang')->result();
+        $this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('peminjam/view_peminjaman', $data);
+
     }
  
 		

@@ -22,11 +22,12 @@ class Model_login extends CI_Model {
     }
    }
    
-   public function create_user($username, $password, $level) {
+   public function create_user($username, $password, $level, $nama) {
     $data = array(
      'username' => $username,
      'password'  => $this->hash_password($password),
-     'level'  => $level
+     'level'  => $level,
+     'nama_peminjam' => $nama
     );
     return $this->db->insert('tb_user', $data);
    }

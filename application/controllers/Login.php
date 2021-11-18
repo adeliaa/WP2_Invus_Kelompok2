@@ -17,15 +17,18 @@ class Login extends CI_Controller{
         //Validation Rules
         $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[tb_user.username]', array('is_unique' => 'This username already exists. Please choose another one.'));
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required');
         if ($this->form_validation->run() == false) {
          $this->load->view('view_regis', $data);
         } else {
          $username= $this->input->post('username');
          $password = $this->input->post('password');
          $level = "Peminjam";
-         if ($this->model_login->create_user($username, $password, $level)) {
+         $nama = $this->input->post('nama');
+         if ($this->model_login->create_user($username, $password, $level, $nama)) {
           redirect('login');
          } else {
+          echo "<script>alert('Wrong Username. Try again.')</script>";
           redirect('login/regis');
          }
         }
@@ -39,7 +42,7 @@ class Login extends CI_Controller{
 	public function aksi_login(){
         if($this->session->userdata('status') == "login"){
          //jika memang session sudah terdaftar
-         redirect('peminjam');
+         redirect('peminjam/list');
         } else {
          $this->form_validation->set_rules('username', 'Username', 'required');
          $this->form_validation->set_rules('password', 'Password', 'required');
@@ -47,20 +50,20 @@ class Login extends CI_Controller{
          if ($this->form_validation->run() == false) {
           $this->load->view('view_login');
          } else {
-          $email_user= $this->input->post('username');
-          $pass_user = $this->input->post('password');
-          $checking = $this->model_login->check_login($email_user,$pass_user);
+          $username= $this->input->post('username');
+          $password = $this->input->post('password');
+          $nama_peminjam = $this->input->post('nama');
+          $checking = $this->model_login->check_login($username,$password, $nama_peminjam);
           if ($checking == true) {
            foreach ($checking as $apps) {
             $session_data = array(
-            'id_user'   => $apps->id_user,
-            'email_user' => $apps->email_user,
-            'pass_user' => $apps->pass_user,
-            'name_user' => $apps->name_user,
+            'username' => $apps->username,
+            'password' => $apps->password,
+            'nama_peminjam' => $apps->nama_peminjam,
             'status' => "login"
            );
            $this->session->set_userdata($session_data);
-           redirect('peminjam');
+           redirect('peminjam/list');
           }
          } else {
           $this->load->view('view_login');

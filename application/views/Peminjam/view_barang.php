@@ -25,6 +25,8 @@
       <td><?php echo $barang->nama_barang?></td>
       <td><?php echo $barang->kondisi?></td>
       <td><?php echo $barang->stok?></td>
+      <td><a class="btn btn-success btn-sm" href="<?php echo site_url('peminjam/add/'.$barang->id_barang);?>" class="btn btn-small"><i class="fa fa-plus"></i> Pinjam</a>                      
+                            
     </tr>
     <?php } ?>
   </tbody>

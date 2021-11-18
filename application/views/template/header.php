@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="description" content="Peminjaman Barang - Balai Monitoring Spektrum Frekuensi Radio Kelas II Lampung">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="<?php echo base_url('assets/images/logosc.png')?>">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/img/logoo.png')?>">
 
     <link rel="stylesheet" href="<?php echo base_url('assets/css/normalize.css')?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css')?>">

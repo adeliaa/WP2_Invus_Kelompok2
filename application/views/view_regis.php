@@ -110,6 +110,8 @@
       <?php echo form_error('username'); ?>
       <input type="password" placeholder="Password" name="password" require/>
       <?php echo form_error('password'); ?>
+      <input type="text" placeholder="Nama Lengkap" name="nama" required/>
+      <?php echo form_error('nama'); ?>
       <button>Sign up</button>
       <p>a member? <a href="<?php echo site_url('login')?>" style="color:black;"><span>Log in</span></a></p>
     </div>

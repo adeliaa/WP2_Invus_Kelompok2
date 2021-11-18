@@ -7,8 +7,8 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand"><img src="<?php echo base_url('assets/images/.png');?>" alt="Logo"></a>
-                <a class="navbar-brand hidden"><img src="<?php echo base_url('assets/images/logosc.png');?>" alt="Logo"></a>
+                <a class="navbar-brand"><img src="<?php echo base_url('assets/img/logoo.png');?>" alt="Logo"></a>
+                <a class="navbar-brand hidden"><img src="<?php echo base_url('assets/img/logoo.png');?>" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -28,7 +28,7 @@
                         <a href="<?php echo site_url('Laporanbarang/kelaporan')?>"> <i class="menu-icon fa fa-print"></i>Laporan Peminjaman</a>
                     </li>
 					<li>
-						<a href="<?php echo base_url('login/logout')?>"> <i class="menu-icon fa fa fa-sign-out"></i>	Logout</a>
+						<a href="<?php echo base_url('login/logout')?>"> <i class="menu-icon fa fa fa-sign-out"></i>Logout</a>
 					</li>
                     
 					</li>
@@ -52,7 +52,7 @@
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-home"></i></a>
                     <div class="header-right"> 
                     <div class="dropdown">
-                        <button onclick="myFunction()" class="dropbtn"><i class="fa fa-user-circle" style="font-size:20px;margin-right:10px"></i>user</button>
+                        <button onclick="myFunction()" class="dropbtn"><i class="fa fa-user-circle" style="font-size:20px;margin-right:10px"></i><?php echo $this->session->userdata("username"); ?></button>
                         <div id="myDropdown" class="dropdown-content">
                         <a href="#">Profile</a>
                         <a href="<?php echo base_url('login/logout')?>">Log Out</a>
