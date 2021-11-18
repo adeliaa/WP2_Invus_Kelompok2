@@ -1,13 +1,17 @@
 <?php 
 
-class Model_barang extends CI_Model{
-    
-    private $_table = "tb_barang";
- 
+class Model_peminjam extends CI_Model{
+     
 	function list()
     {
 		return $this->db->get('tb_barang');
-	} 
+	}
+    
+    function list_peminjaman()
+    {
+		return $this->db->get('view_laporan');
+        
+	}
 
     function save($data,$table)
     {

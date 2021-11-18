@@ -1,7 +1,8 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo site_url('peminjam/index'); ?>">Beranda</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo site_url('peminjam/list'); ?>">Daftar Barang</a></li>
     <li class="breadcrumb-item active" aria-current="page">Peminjaman</li>
   </ol>
 </nav>
@@ -17,8 +18,7 @@
                             
                             
                           <div class="row form-group">
-                                <div class="col col-md-3"><label for="id_barang" class=" form-control-label">Kode Barang</label></div>
-                                <div class="col-12 col-md-9"><input type="text" id="id_barang" name="id_barang" value="<?php echo $detail->id_barang; ?>" class="form-control" required></div>
+                                <div class="col-12 col-md-9"><input type="hidden" id="id_barang" name="id_barang" value="<?php echo $detail->id_barang; ?>" class="form-control" required></div>
                           </div>
 
                           <div class="row form-group">
@@ -35,6 +35,11 @@
                                <div class="col col-md-3"><label for="tanggal_pinjam" class=" form-control-label">Tanggal Pinjam</label></div>
                                <div class="col-12 col-md-9"><input type="date" id="tanggal_pinjam" name="tanggal_pinjam" class="form-control" required></div>       
                           </div>
+
+                          <div class="row form-group">
+                               <div class="col col-md-3"><label for="tanggal_pengembalian" class=" form-control-label">Tanggal Pengembalian</label></div>
+                               <div class="col-12 col-md-9"><input type="date" id="tanggal_pengembalian" name="tanggal_pengembalian" class="form-control" required></div>       
+                          </div>
                           
                           <div class="row form-group"> <!--dibuat dropdown-->
                             <div class="col col-md-3">
@@ -50,8 +55,8 @@
                             <div class="row form-group">
 						    <div class="col col-md-3"></div>
 							<div class="col-12 col-md-9">
-							<button type="submit" class="btn btn-primary btn-sm">
-							<i class="fa fa-plus"></i> Lanjut
+							<button type="submit" class="btn btn-success btn-sm">
+							<i class="fa fa-plus"></i> Save
 							</button>
 							<button type="reset" class="btn btn-danger btn-sm">
 							<i class="fa fa-ban"></i> Reset
