@@ -7,13 +7,11 @@ class Model_peminjam extends CI_Model{
 		return $this->db->get('tb_barang');
 	}
     
-    function list_peminjaman($where)
+    function list_peminjaman($table ,$where)
     {
+        return $this->db->get_where('view_laporan', $where);
+    }
 
-        $this->db->where($where);
-		$this->db->select('view_laporan');
-        
-	}
 
     function save($data,$table)
     {

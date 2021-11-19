@@ -36,23 +36,26 @@ class Peminjam extends CI_Controller {
     }
     
     function laporan(){
-      //  $data['view_laporan'] = $this->model_peminjam->list_peminjaman()->result();
+        $username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+
+        $id = $query->id;
+
+        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
+            'status =' => 'Di booking', 
+            'status =' => 'Di pinjam',
+            'id_user =' => $id))->result();
+
         $this->load->view('template/header');
 		$this->load->view('template/sidebar');
-	//	$this->load->view('peminjam/view_laporan', $data);
+	    $this->load->view('peminjam/view_laporan', $data);
 		$this->load->view('template/footer');
-        $username = $this->session->userdata('username');
-        $this->db->select('status');
-        $this->db->where('username', $username);//
-        $this->db->from('view_laporan');
-        $query = $this->db->get()->row();
-        return print($query);
-
-        $laporan = array(
-            'status' => "Di booking" 
-        );
+      
     }
-
     function keaungan(){
         $data['tb_peminjaman'] = $this->model_peminjam->list_transaksi()->result();
         $this->load->view('template/header');

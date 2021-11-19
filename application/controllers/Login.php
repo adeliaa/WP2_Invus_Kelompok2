@@ -53,7 +53,7 @@ class Login extends CI_Controller{
           $username= $this->input->post('username');
           $password = $this->input->post('password');
           $nama_peminjam = $this->input->post('nama');
-          $checking = $this->model_login->check_login($username,$password, $nama_peminjam, $id);
+          $checking = $this->model_login->check_login($username,$password, $nama_peminjam);
           if ($checking == true) {
            foreach ($checking as $apps) {
             $session_data = array(
