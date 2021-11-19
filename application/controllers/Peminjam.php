@@ -35,15 +35,21 @@ class Peminjam extends CI_Controller {
 
     }
     
-    function laporan($laporan){
-        $data['view_laporan'] = $this->model_peminjam->list_peminjaman()->result();
+    function laporan(){
+      //  $data['view_laporan'] = $this->model_peminjam->list_peminjaman()->result();
         $this->load->view('template/header');
 		$this->load->view('template/sidebar');
-		$this->load->view('peminjam/view_laporan', $data);
+	//	$this->load->view('peminjam/view_laporan', $data);
 		$this->load->view('template/footer');
+        $username = $this->session->userdata('username');
+        $this->db->select('status');
+        $this->db->where('username', $username);//
+        $this->db->from('view_laporan');
+        $query = $this->db->get()->row();
+        return print($query);
 
         $laporan = array(
-            'status' => "Di booking" || "Di pinjam"
+            'status' => "Di booking" 
         );
     }
 

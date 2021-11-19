@@ -7,9 +7,11 @@ class Model_peminjam extends CI_Model{
 		return $this->db->get('tb_barang');
 	}
     
-    function list_peminjaman()
+    function list_peminjaman($where)
     {
-		return $this->db->get('view_laporan');
+
+        $this->db->where($where);
+		$this->db->select('view_laporan');
         
 	}
 
@@ -22,7 +24,7 @@ class Model_peminjam extends CI_Model{
         return $this->db->get_where($table,$where);
     }
 
-    function update($where,$data,$table){
+        function update($where,$data,$table){
 		$this->db->where($where);
 		$this->db->update($table,$data);
     
