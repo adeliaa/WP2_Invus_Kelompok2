@@ -1,11 +1,11 @@
 
-<nav aria-label="breadcrumb">
+<!--<nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<?php echo site_url('peminjam/index'); ?>">Beranda</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo site_url('peminjam/laporan'); ?>">Laporan Peminjaman</a></li>
+    <li class="breadcrumb-item"><a href="<?php// echo site_url('peminjam/index'); ?>">Beranda</a></li>
+    <li class="breadcrumb-item"><a href="<?php// echo site_url('peminjam/laporan'); ?>">Laporan Peminjaman</a></li>
     <li class="breadcrumb-item active" aria-current="page">Detail Peminjaman</li>
   </ol>
-</nav>
+</nav> -->
 		<div class="container">
         <div class="card">
 

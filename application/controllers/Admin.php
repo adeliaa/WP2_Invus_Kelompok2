@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
  
-class Peminjam extends CI_Controller {
+class Admin extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
@@ -26,6 +26,7 @@ class Peminjam extends CI_Controller {
 		$this->load->view('peminjam/view_barang', $data);
 		$this->load->view('template/footer');
     }
+	
 		
 	
  

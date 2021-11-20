@@ -27,6 +27,26 @@ class Peminjam extends CI_Controller {
 		$this->load->view('template/footer');
     }
 
+    function profile(){
+     
+        $username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+
+        $id = $query->id;   
+
+        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+        $data['tb_user'] = $this->db->get_where('tb_user', array(
+            'id =' => $id))->result();
+        
+        $this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('peminjam/view_profile', $data);
+		$this->load->view('template/footer');
+    }
+
 	function add($id){
 		$where = array('id_barang' => $id);
         $data['tb_barang'] = $this->model_peminjam->pinjam($where,'tb_barang')->result();
@@ -150,6 +170,54 @@ class Peminjam extends CI_Controller {
     }
 
 	function save()
+    {   
+		$username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+     // return print($username);
+        
+        $id = $query->id;
+        $id_barang = $this->input->post('id_barang');
+        $jumlah_pinjam = $this->input->post('jumlah_pinjam');
+        $tanggal_pinjam = $this->input->post('tanggal_pinjam');
+        $status = "Di booking";
+        $tanggal_pengembalian = $this->input->post('tanggal_pengembalian');
+        $kondisi_saat_pinjam = $this->input->post('kondisi_saat_pinjam');
+        
+        $data = array (
+            'id_user' => $id,
+            'id_barang' => $id_barang,
+            'jumlah_pinjam' => $jumlah_pinjam,
+            'tanggal_pinjam' => $tanggal_pinjam,
+            'status' => $status,
+            'tanggal_pengembalian' => $tanggal_pengembalian,
+            'kondisi_saat_pinjam' => $kondisi_saat_pinjam        
+            ); 
+
+        $this->db->select('stok, id_barang');
+        $this->db->where('id_barang', $id_barang);
+        $this->db->from('tb_barang');
+        $query1 = $this->db->get()->row();
+        
+        $oldStok = $query1->stok;
+        $newStok = $oldStok - $jumlah_pinjam;
+
+        $stok = array (
+            'stok' => $newStok
+        );
+
+        $where = array (
+            'id_barang' => $id_barang
+        );
+
+        $this->model_peminjam->save($data, 'tb_peminjaman');
+        $this->model_peminjam->update($where, $stok, 'tb_barang');
+        redirect('peminjam/list');
+    }
+
+    function profile_update()
     {   
 		$username = $this->session->userdata('username');
         $this->db->select('username, id');

@@ -57,7 +57,7 @@
                     <div class="dropdown">
                         <button onclick="myFunction()" class="dropbtn"><i class="fa fa-user-circle" style="font-size:20px;margin-right:10px"></i><?php echo $this->session->userdata("username"); ?></button>
                         <div id="myDropdown" class="dropdown-content">
-                        <a href="#">Profile</a>
+                        <a href="<?php echo site_url('peminjam/profile')?>">Profile</a>
                         <a href="<?php echo base_url('login/logout')?>">Log Out</a>
                     </div>
                     </div>

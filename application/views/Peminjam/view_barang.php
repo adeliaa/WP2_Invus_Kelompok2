@@ -19,8 +19,6 @@
   <tbody>
     <?php
     foreach($tb_barang as $barang){
-
-      $breadcumbs = ""
       ?>
       <tr>
       <td><img style="width:100px" src="<?php echo base_url(); ?>assets/img/<?php echo $barang->gambar?>"></th>

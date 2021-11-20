@@ -2,7 +2,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?php echo site_url('peminjam/index'); ?>">Beranda</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Laporan Peminjaman</li>
+    <li class="breadcrumb-item active" aria-current="page">Penggantian Barang</li>
   </ol>
 </nav>
 		<div class="container text-center">
