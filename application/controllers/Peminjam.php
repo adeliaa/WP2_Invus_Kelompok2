@@ -20,6 +20,7 @@ class Peminjam extends CI_Controller {
 
     function list(){
         $data['tb_barang'] = $this->model_peminjam->list()->result();
+        
         $this->load->view('template/header');
 		$this->load->view('template/sidebar');
 		$this->load->view('peminjam/view_barang', $data);
@@ -109,10 +110,42 @@ class Peminjam extends CI_Controller {
     }
 
     function keuangan(){
-        $data['tb_peminjaman'] = $this->model_peminjam->list_transaksi()->result();
+        $username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+
+        $id = $query->id;
+
+        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
+            'status =' => 'Penggantian Barang',
+            'id_user =' => $id))->result();
+
         $this->load->view('template/header');
 		$this->load->view('template/sidebar');
-		$this->load->view('peminjam/view_transaksi', $data);
+	    $this->load->view('peminjam/view_laporan_pembayaran', $data);
+		$this->load->view('template/footer');
+    }
+
+    function denda(){
+        $username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+
+        $id = $query->id;
+
+        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
+            'status =' => 'denda',
+            'id_user =' => $id))->result();
+
+        $this->load->view('template/header');
+		$this->load->view('template/sidebar');
+	    $this->load->view('peminjam/view_laporan_pembayaran', $data);
 		$this->load->view('template/footer');
     }
 

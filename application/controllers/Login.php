@@ -47,13 +47,23 @@ class Login extends CI_Controller{
          $this->form_validation->set_rules('username', 'Username', 'required');
          $this->form_validation->set_rules('password', 'Password', 'required');
          //jika session belum terdaftar
+
          if ($this->form_validation->run() == false) {
           $this->load->view('view_login');
          } else {
           $username= $this->input->post('username');
           $password = $this->input->post('password');
           $nama_peminjam = $this->input->post('nama');
+          
+          $this->db->select('level, username');
+          $this->db->where('username', $username);
+          $this->db->from('tb_user');
+          $query1 = $this->db->get()->row();
+          $level = $query1->level;
+         // return print($level);
+
           $checking = $this->model_login->check_login($username,$password, $nama_peminjam);
+
           if ($checking == true) {
            foreach ($checking as $apps) {
             $session_data = array(
@@ -63,6 +73,20 @@ class Login extends CI_Controller{
             'status' => "login"
            );
            $this->session->set_userdata($session_data);
+
+           if($level === 'Admin'){
+            redirect('admin/index');
+           }
+ 
+             // access login for Peminjam
+          elseif($level === 'peminjam'){
+            redirect('peminjam/index');
+          }
+          else{
+            echo $this->session->set_flashdata('msg','Username or Password is Wrong');
+            redirect('login');
+          }
+           
            redirect('peminjam/list');
           }
          } else {

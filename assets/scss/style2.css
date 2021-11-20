@@ -1256,6 +1256,7 @@ textarea {
 
 
 /* DropDown */
+
 .dropbtn {
 	background-color: #32485c;
 	border: none;
@@ -1373,7 +1374,7 @@ aside.left-panel {
 
 .navbar .menu-title {
 	border-bottom: 1px solid #4e4e52;
-	color: #9496a1;
+	color: white;
 	clear: both;
 	display: block;
 	font-family: 'Open Sans';
@@ -1406,7 +1407,7 @@ aside.left-panel {
 
 .navbar .navbar-nav li>a {
 	background: none !important;
-	color: #c8c9ce !important;
+	color: white !important;
 	display: inline-block;
 	font-family: 'Open Sans';
 	font-size: 14px;
@@ -1418,11 +1419,11 @@ aside.left-panel {
 
 .navbar .navbar-nav li>a:hover,
 .navbar .navbar-nav li>a:hover .menu-icon {
-	color: #fff !important;
+	color: #c8c9ce !important;
 }
 
 .navbar .navbar-nav li>a .menu-icon {
-	color: #8b939b;
+	color: white;
 	float: left;
 	margin-top: 8px;
 	width: 55px;

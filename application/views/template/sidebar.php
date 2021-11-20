@@ -15,7 +15,7 @@
                 
                 <ul class="nav navbar-nav">
                     <h3 class="menu-title">Menu</h3><!-- /.menu-title -->
-                    <li class="active">
+                    <li>
                         <a href="<?php echo site_url('peminjam/index')?>"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <li>
@@ -25,7 +25,10 @@
                         <a href="<?php echo site_url('peminjam/laporan')?>"> <i class="menu-icon fa fa-print"></i>Laporan Peminjaman</a>
                     </li>
 					<li>
-                        <a href="<?php echo site_url('peminjam/keungan')?>"> <i class="menu-icon fa fa-money"></i>Laporan Pembayaran</a>
+                        <a href="<?php echo site_url('peminjam/keuangan')?>"> <i class="menu-icon 	fa fa-dropbox"></i>Pengantian Barang</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('peminjam/denda')?>"> <i class="menu-icon fa fa-money"></i>Laporan Denda</a>
                     </li>
 					<li>
 						<a href="<?php echo base_url('login/logout')?>"> <i class="menu-icon fa fa fa-sign-out"></i>Logout</a>
