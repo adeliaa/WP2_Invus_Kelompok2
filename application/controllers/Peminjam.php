@@ -6,7 +6,7 @@ class Peminjam extends CI_Controller {
 	function __construct(){
 		parent::__construct();
         $this->load->model('model_peminjam');
-            if($this->session->userdata('status') != "login"){
+            if($this->session->userdata('level') != "Peminjam"){
                 redirect(site_url("login"));}
 		
 	}

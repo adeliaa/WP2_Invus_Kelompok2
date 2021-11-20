@@ -40,10 +40,9 @@ class Login extends CI_Controller{
 	}
     
 	public function aksi_login(){
-        if($this->session->userdata('status') == "login"){
-         //jika memang session sudah terdaftar
-         redirect('peminjam/list');
-        } else {
+     
+         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+         $this->output->set_header("Pragma: no-cache");
          $this->form_validation->set_rules('username', 'Username', 'required');
          $this->form_validation->set_rules('password', 'Password', 'required');
          //jika session belum terdaftar
@@ -52,8 +51,8 @@ class Login extends CI_Controller{
          } else {
           $username= $this->input->post('username');
           $password = $this->input->post('password');
-          $nama_peminjam = $this->input->post('nama');
-          $checking = $this->model_login->check_login($username,$password, $nama_peminjam);
+          $checking = $this->model_login->check_login($username,$password);
+
           if ($checking == true) {
            foreach ($checking as $apps) {
             $session_data = array(
@@ -63,10 +62,9 @@ class Login extends CI_Controller{
             'status' => "login",
             'level' => $apps->level
            );
-
            $level = $apps->level;
-      
            $this->session->set_userdata($session_data);
+           
           }
 
           if($level == 'Admin'){
@@ -74,7 +72,7 @@ class Login extends CI_Controller{
            }
  
              // access login for Peminjam
-          elseif($level == 'peminjam'){
+          elseif($level == 'Peminjam'){
             redirect('peminjam/index');
           }
          } else {
@@ -83,4 +81,4 @@ class Login extends CI_Controller{
         }
        }
     }
-}
+

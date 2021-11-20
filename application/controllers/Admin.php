@@ -12,19 +12,19 @@ class Admin extends CI_Controller {
 	}
  
 	function index(){
-		$this->load->view('template/header');
-		$this->load->view('template/sidebar');
+		$this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
 		$this->load->view('peminjam/view_beranda');
-		$this->load->view('template/footer');
+		$this->load->view('admin/footer');
 	}
 
     function list(){
         $data['tb_barang'] = $this->model_peminjam->list()->result();
 
-        $this->load->view('template/header');
-		$this->load->view('template/sidebar');
-		$this->load->view('peminjam/view_barang', $data);
-		$this->load->view('template/footer');
+        $this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/', $data);
+		$this->load->view('admin/footer');
     }
 	
 		
