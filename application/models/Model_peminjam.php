@@ -22,6 +22,10 @@ class Model_peminjam extends CI_Model{
         return $this->db->get_where($table,$where);
     }
 
+    function detail($where,$table){		
+        return $this->db->get_where($table,$where);
+    }
+
         function update($where,$data,$table){
 		$this->db->where($where);
 		$this->db->update($table,$data);
