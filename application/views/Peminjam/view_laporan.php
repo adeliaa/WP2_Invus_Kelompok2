@@ -9,7 +9,7 @@
     <button class="dropbtn" style="border-radius:5px;"><i class="fa fa-arrow-circle-o-down"> Status</i></button>
     <div class="dropdown2-content">
       <a href="<?php echo base_url('peminjam/laporan')?>">DiPinjam</a>
-      <a href="<?php echo base_url('peminjam/laporan2')?>">Diboongking</a>
+      <a href="<?php echo base_url('peminjam/laporan2')?>">Dibooking</a>
       <a href="<?php echo base_url('peminjam/laporan3')?>">Kembali</a>
     </div>
   </div>  

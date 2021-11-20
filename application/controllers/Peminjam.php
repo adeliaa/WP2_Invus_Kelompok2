@@ -149,26 +149,6 @@ class Peminjam extends CI_Controller {
 		$this->load->view('template/footer');
     }
 
-    function denda(){
-        $username = $this->session->userdata('username');
-        $this->db->select('username, id');
-        $this->db->where('username', $username);//
-        $this->db->from('tb_user');
-        $query = $this->db->get()->row();
-
-        $id = $query->id;
-
-        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
-        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
-            'status =' => 'denda',
-            'id_user =' => $id))->result();
-
-        $this->load->view('template/header');
-		$this->load->view('template/sidebar');
-	    $this->load->view('peminjam/view_laporan_pembayaran', $data);
-		$this->load->view('template/footer');
-    }
-
 	function save()
     {   
 		$username = $this->session->userdata('username');
@@ -217,7 +197,7 @@ class Peminjam extends CI_Controller {
         redirect('peminjam/list');
     }
 
-    function profile_update()
+    public function profile_update()
     {   
 		$username = $this->session->userdata('username');
         $this->db->select('username, id');
@@ -227,46 +207,46 @@ class Peminjam extends CI_Controller {
      // return print($username);
         
         $id = $query->id;
-        $id_barang = $this->input->post('id_barang');
-        $jumlah_pinjam = $this->input->post('jumlah_pinjam');
-        $tanggal_pinjam = $this->input->post('tanggal_pinjam');
-        $status = "Di booking";
-        $tanggal_pengembalian = $this->input->post('tanggal_pengembalian');
-        $kondisi_saat_pinjam = $this->input->post('kondisi_saat_pinjam');
+        $password = $this->input->post('password');
+        $nama = $this->input->post('nama');
+        $kelas = $this->input->post('kelas');
+        $no_telp = $this->input->post('no_telp');
+        $alamat = $this->input->post('alamat');
         
         $data = array (
-            'id_user' => $id,
-            'id_barang' => $id_barang,
-            'jumlah_pinjam' => $jumlah_pinjam,
-            'tanggal_pinjam' => $tanggal_pinjam,
-            'status' => $status,
-            'tanggal_pengembalian' => $tanggal_pengembalian,
-            'kondisi_saat_pinjam' => $kondisi_saat_pinjam        
+            'nama_peminjam' => $nama,
+            'kelas' => $kelas,
+            'no_telp' => $no_telp,
+            'alamat' => $alamat,       
             ); 
 
-        $this->db->select('stok, id_barang');
-        $this->db->where('id_barang', $id_barang);
-        $this->db->from('tb_barang');
-        $query1 = $this->db->get()->row();
-        
-        $oldStok = $query1->stok;
-        $newStok = $oldStok - $jumlah_pinjam;
-
-        $stok = array (
-            'stok' => $newStok
-        );
+        $data2 = array (
+            'password' =>  $this->hash_password($password),
+            'nama_peminjam' => $nama,
+            'kelas' => $kelas,
+            'no_telp' => $no_telp,
+            'alamat' => $alamat,       
+            ); 
 
         $where = array (
-            'id_barang' => $id_barang
+            'id' => $id
         );
 
-        $this->model_peminjam->save($data, 'tb_peminjaman');
-        $this->model_peminjam->update($where, $stok, 'tb_barang');
+        if($password != null){
+
+            $this->model_peminjam->update($where, $data2, 'tb_user');
+        }
+        else{
+
+            $this->model_peminjam->update($where, $data, 'tb_user');
+        
+        }
+        
         redirect('peminjam/list');
     }
 
- 
-		
-	
+    private function hash_password($password) {
+        return password_hash($password, PASSWORD_BCRYPT);
+       }
  
 }

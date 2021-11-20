@@ -45,22 +45,20 @@
                                <div class="col-12 col-md-9"><input type="text" id="alamat" name="alamat" class="form-control" value="<?php echo $detail->alamat; ?>" required></div>       
                           </div>
                           <div class="row form-group"> <!--dibuat dropdown-->
-                            <div class="col col-md-3">
-                            </div>
+                              <div class="col col-md-3"></div>
+                          </div>
+                          <div class="row form-group">
+						                    <div class="col col-md-3"></div>
+							                  <div class="col-12 col-md-9">
+							                    <button type="submit" class="btn btn-success btn-sm">
+							                      <i class="fa fa-plus"></i> Save
+							                    </button>
+							                    <button type="reset" class="btn btn-danger btn-sm">
+							                    <i class="fa fa-ban"></i> Reset
+							                    </button>
+							                  </div>
+						                </div>
                               
-                            </div>
-                            <div class="row form-group">
-						    <div class="col col-md-3"></div>
-							<div class="col-12 col-md-9">
-							<button type="submit" class="btn btn-success btn-sm">
-							<i class="fa fa-plus"></i> Save
-							</button>
-							<button type="reset" class="btn btn-danger btn-sm">
-							<i class="fa fa-ban"></i> Reset
-							</button>
-							</div>
-						  </div>
-      
                         </form>
                         <?php
                             }
