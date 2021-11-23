@@ -6,7 +6,7 @@ class Peminjam extends CI_Controller {
 	function __construct(){
 		parent::__construct();
         $this->load->model('model_peminjam');
-            if($this->session->userdata('status') != "login"){
+            if($this->session->userdata('level') != "Peminjam"){
                 redirect(site_url("login"));}
 		
 	}
@@ -24,6 +24,26 @@ class Peminjam extends CI_Controller {
         $this->load->view('template/header');
 		$this->load->view('template/sidebar');
 		$this->load->view('peminjam/view_barang', $data);
+		$this->load->view('template/footer');
+    }
+
+    function profile(){
+     
+        $username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+
+        $id = $query->id;   
+
+        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+        $data['tb_user'] = $this->db->get_where('tb_user', array(
+            'id =' => $id))->result();
+        
+        $this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('peminjam/view_profile', $data);
 		$this->load->view('template/footer');
     }
 
@@ -129,26 +149,6 @@ class Peminjam extends CI_Controller {
 		$this->load->view('template/footer');
     }
 
-    function denda(){
-        $username = $this->session->userdata('username');
-        $this->db->select('username, id');
-        $this->db->where('username', $username);//
-        $this->db->from('tb_user');
-        $query = $this->db->get()->row();
-
-        $id = $query->id;
-
-        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
-        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
-            'status =' => 'denda',
-            'id_user =' => $id))->result();
-
-        $this->load->view('template/header');
-		$this->load->view('template/sidebar');
-	    $this->load->view('peminjam/view_laporan_pembayaran', $data);
-		$this->load->view('template/footer');
-    }
-
 	function save()
     {   
 		$username = $this->session->userdata('username');
@@ -197,8 +197,56 @@ class Peminjam extends CI_Controller {
         redirect('peminjam/list');
     }
 
- 
-		
-	
+    public function profile_update()
+    {   
+		$username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+     // return print($username);
+        
+        $id = $query->id;
+        $password = $this->input->post('password');
+        $nama = $this->input->post('nama');
+        $kelas = $this->input->post('kelas');
+        $no_telp = $this->input->post('no_telp');
+        $alamat = $this->input->post('alamat');
+        
+        $data = array (
+            'nama_peminjam' => $nama,
+            'kelas' => $kelas,
+            'no_telp' => $no_telp,
+            'alamat' => $alamat,       
+            ); 
+
+        $data2 = array (
+            'password' =>  $this->hash_password($password),
+            'nama_peminjam' => $nama,
+            'kelas' => $kelas,
+            'no_telp' => $no_telp,
+            'alamat' => $alamat,       
+            ); 
+
+        $where = array (
+            'id' => $id
+        );
+
+        if($password != null){
+
+            $this->model_peminjam->update($where, $data2, 'tb_user');
+        }
+        else{
+
+            $this->model_peminjam->update($where, $data, 'tb_user');
+        
+        }
+        
+        redirect('peminjam/list');
+    }
+
+    private function hash_password($password) {
+        return password_hash($password, PASSWORD_BCRYPT);
+       }
  
 }

@@ -2,7 +2,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?php echo site_url('peminjam/index'); ?>">Beranda</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Laporan Peminjaman</li>
+    <li class="breadcrumb-item active" aria-current="page">Penggantian Barang</li>
   </ol>
 </nav>
 		<div class="container text-center">
@@ -30,7 +30,7 @@
       <td><?php echo $pinjam->tanggal_pinjam?></td>
       <td><?php echo $pinjam->tanggal_pengembalian?></td>
       <td><?php echo $pinjam->status?></td>      
-      <td><a class="btn btn-success btn-sm" href="<?php echo site_url('peminjam/detail/'.$pinjam->id_peminjaman);?>" class="btn btn-small"><i class="fa fa-file"></i> Detail</a>             
+      <td><a class="btn btn-success btn-sm" href="<?php echo site_url('peminjam/detail/'.$pinjam->id_peminjaman);?>" class="btn btn-small" style="border-radius:16px;"><i class="fa fa-file"></i> Detail</a>             
                             
     </tr>
     <?php } ?>

@@ -40,29 +40,18 @@ class Login extends CI_Controller{
 	}
     
 	public function aksi_login(){
-        if($this->session->userdata('status') == "login"){
-         //jika memang session sudah terdaftar
-         redirect('peminjam/list');
-        } else {
+     
+         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+         $this->output->set_header("Pragma: no-cache");
          $this->form_validation->set_rules('username', 'Username', 'required');
          $this->form_validation->set_rules('password', 'Password', 'required');
          //jika session belum terdaftar
-
          if ($this->form_validation->run() == false) {
           $this->load->view('view_login');
          } else {
           $username= $this->input->post('username');
           $password = $this->input->post('password');
-          $nama_peminjam = $this->input->post('nama');
-          
-          $this->db->select('level, username');
-          $this->db->where('username', $username);
-          $this->db->from('tb_user');
-          $query1 = $this->db->get()->row();
-          $level = $query1->level;
-         // return print($level);
-
-          $checking = $this->model_login->check_login($username,$password, $nama_peminjam);
+          $checking = $this->model_login->check_login($username,$password);
 
           if ($checking == true) {
            foreach ($checking as $apps) {
@@ -70,24 +59,21 @@ class Login extends CI_Controller{
             'username' => $apps->username,
             'password' => $apps->password,
             'nama_peminjam' => $apps->nama_peminjam,
-            'status' => "login"
+            'status' => "login",
+            'level' => $apps->level
            );
+           $level = $apps->level;
            $this->session->set_userdata($session_data);
+           
+          }
 
-           if($level === 'Admin'){
+          if($level == 'Admin'){
             redirect('admin/index');
            }
  
              // access login for Peminjam
-          elseif($level === 'peminjam'){
+          elseif($level == 'Peminjam'){
             redirect('peminjam/index');
-          }
-          else{
-            echo $this->session->set_flashdata('msg','Username or Password is Wrong');
-            redirect('login');
-          }
-           
-           redirect('peminjam/list');
           }
          } else {
           $this->load->view('view_login');
@@ -95,4 +81,3 @@ class Login extends CI_Controller{
         }
        }
     }
-}

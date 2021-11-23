@@ -16,16 +16,29 @@
                 <ul class="nav navbar-nav">
                     <h3 class="menu-title">Menu</h3><!-- /.menu-title -->
                     <li>
-                        <a href="<?php echo site_url('peminjam/index')?>"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="<?php echo site_url('admin/index')?>"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('peminjam/list')?>"> <i class="menu-icon fa fa-tasks"></i>Daftar Barang</a>
+                        <a href="<?php echo site_url('admin/list_barang')?>"> <i class="menu-icon fa fa-tasks"></i>Data Barang</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('peminjam/laporan')?>"> <i class="menu-icon fa fa-print"></i>Laporan Peminjaman</a>
+                        <a href="<?php echo site_url('admin/anggota')?>"> <i class="menu-icon fa fa-tasks"></i>Data Anggota</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('admin/laporan')?>"> <i class="menu-icon fa fa-print"></i>Data Booking</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('admin/laporan')?>"> <i class="menu-icon fa fa-print"></i>Data Peminjaman</a>
                     </li>
 					<li>
-                        <a href="<?php echo site_url('peminjam/keuangan')?>"> <i class="menu-icon 	fa fa-dropbox"></i>Pengantian Barang</a>
+                        <a href="<?php echo site_url('admin/keuangan')?>"> <i class="menu-icon 	fa fa-dropbox"></i>Data Pengantian Barang</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('admin/denda')?>"> <i class="menu-icon fa fa-money"></i>Laporan Denda</a>
+                    </li>
+                    
+                    <li>
+                        <a href="<?php echo site_url('admin/denda')?>"> <i class="menu-icon fa fa-money"></i>Data Pengembalian</a>
                     </li>
 					<li>
 						<a href="<?php echo base_url('login/logout')?>"> <i class="menu-icon fa fa fa-sign-out"></i>Logout</a>
@@ -54,7 +67,7 @@
                     <div class="dropdown">
                         <button onclick="myFunction()" class="dropbtn"><i class="fa fa-user-circle" style="font-size:20px;margin-right:10px"></i><?php echo $this->session->userdata("username"); ?></button>
                         <div id="myDropdown" class="dropdown-content">
-                        <a href="<?php echo site_url('peminjam/profile')?>">Profile</a>
+                        <a href="<?php echo site_url('admin/profile')?>">Profile</a>
                         <a href="<?php echo base_url('login/logout')?>">Log Out</a>
                     </div>
                     </div>
