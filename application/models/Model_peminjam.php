@@ -17,6 +17,10 @@ class Model_peminjam extends CI_Model{
     {
         $this->db->insert('tb_peminjaman',$data);      
     }
+
+    function insert_barang($table,$data){
+        return $this->db->insert($table,$data);
+      }
     
     function pinjam($where,$table){		
         return $this->db->get_where($table,$where);

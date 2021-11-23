@@ -8,8 +8,8 @@
   <div class="dropdown2" style="padding-left:15px;">
     <button class="dropbtn" style="border-radius:5px;"><i class="fa fa-arrow-circle-o-down"> Status</i></button>
     <div class="dropdown2-content">
-      <a href="<?php echo base_url('peminjam/laporan')?>">DiPinjam</a>
-      <a href="<?php echo base_url('peminjam/laporan2')?>">Dibooking</a>
+      <a href="<?php echo base_url('peminjam/laporan')?>">Di Pinjam</a>
+      <a href="<?php echo base_url('peminjam/laporan2')?>">Di booking</a>
       <a href="<?php echo base_url('peminjam/laporan3')?>">Kembali</a>
     </div>
   </div>  
@@ -38,7 +38,7 @@
       <td><?php echo $pinjam->tanggal_pinjam?></td>
       <td><?php echo $pinjam->tanggal_pengembalian?></td>
       <td><?php echo $pinjam->status?></td>      
-      <td><a class="btn btn-success btn-sm" href="<?php echo site_url('peminjam/detail/'.$pinjam->id_peminjaman);?>" class="btn btn-small"><i class="fa fa-file"></i> Detail</a>             
+      <td><a class="btn btn-success btn-sm" href="<?php echo site_url('peminjam/detail/'.$pinjam->id_peminjaman);?>" class="btn btn-small" style="border-radius:16px;"><i class="fa fa-file"></i> Detail</a>             
                             
     </tr>
     <?php } ?>

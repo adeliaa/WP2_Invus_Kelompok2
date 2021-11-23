@@ -19,10 +19,10 @@
                         <a href="<?php echo site_url('admin/index')?>"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/list')?>"> <i class="menu-icon fa fa-tasks"></i>Data Barang</a>
+                        <a href="<?php echo site_url('admin/list_barang')?>"> <i class="menu-icon fa fa-tasks"></i>Data Barang</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/list')?>"> <i class="menu-icon fa fa-tasks"></i>Data Anggota</a>
+                        <a href="<?php echo site_url('admin/anggota')?>"> <i class="menu-icon fa fa-tasks"></i>Data Anggota</a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('admin/laporan')?>"> <i class="menu-icon fa fa-print"></i>Data Booking</a>

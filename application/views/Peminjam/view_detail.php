@@ -6,7 +6,7 @@
     <li class="breadcrumb-item active" aria-current="page">Detail Peminjaman</li>
   </ol>
 </nav> -->
-		<div class="container">
+		<div class="container" style = "width:auto; overflow:hidden">
         <div class="card">
 
                       <div class="card-body card-block">
