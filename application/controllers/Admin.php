@@ -371,6 +371,19 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/footer');
 	}
 
+	function list_peminjaman_harian()
+	{
+		//$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where, 'view_laporan')->result();
+		$data['view_laporan'] = $this->db->get_where('view_laporan', array(
+			'status =' => 'Di pinjam', 'tanggal_pinjam=' => date('Y-m-d')
+		))->result();
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/view_peminjaman', $data);
+		$this->load->view('admin/footer');
+	}
+
 	function list_pengembalian()
 	{
 		//$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where, 'view_laporan')->result();
