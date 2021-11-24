@@ -12,6 +12,18 @@ class Model_peminjam extends CI_Model{
         return $this->db->get_where('view_laporan', $where);
     }
 
+    function delbarang($table,$id){
+        return $this->db->delete($table,array('id_barang' => $id));
+    }
+
+    function editbarang($table,$id){
+        return $this->db->get_where($table,array('id_barang' => $id))->row();
+    }
+
+    function upbarang($table,$data,$id){
+        return $this->db->update($table,$data,array('id_barang' => $id));
+    }
+
 
     function save($data,$table)
     {

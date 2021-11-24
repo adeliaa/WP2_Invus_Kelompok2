@@ -25,7 +25,7 @@
                         <a href="<?php echo site_url('admin/anggota')?>"> <i class="menu-icon fa fa-tasks"></i>Data Anggota</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/laporan')?>"> <i class="menu-icon fa fa-print"></i>Data Booking</a>
+                        <a href="<?php echo site_url('admin/booking')?>"> <i class="menu-icon fa fa-print"></i>Data Booking</a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('admin/laporan')?>"> <i class="menu-icon fa fa-print"></i>Data Peminjaman</a>
