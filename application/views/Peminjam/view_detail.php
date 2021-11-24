@@ -23,7 +23,7 @@
                           </div>
 
                           <div class="row form-group">
-                               <div class="col col-md-3"><label for="nama_peminjam" class=" form-control-label">Nama Barang</label></div>
+                               <div class="col col-md-3"><label for="nama_peminjam" class=" form-control-label">Nama Peminjam</label></div>
                                <div class="col-12 col-md-9"><input type="text" id="nama_peminjam" name="nama_peminjam" value="<?php echo $detail->nama_peminjam; ?>" class="form-control" readonly></div>
                           </div>
 

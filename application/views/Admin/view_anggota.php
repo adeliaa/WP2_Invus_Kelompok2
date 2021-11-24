@@ -25,7 +25,7 @@
       <td><?php echo $a->nama_peminjam?></td>
       <td><?php echo $a->username?></td>
       <td><?php echo $a->kelas?></td>
-      <td><a class="btn btn-info btn-sm" href="<?php echo site_url('admin/edit_anggota/'.$a->id);?>" class="btn btn-small"  style="border-radius:16px;"><i class="fa fa-edit"></i> Edit </a>
+      <td><a class="btn btn-warning btn-sm" href="<?php echo site_url('admin/edit_anggota/'.$a->id);?>" class="btn btn-small"  style="border-radius:16px;"><i class="fa fa-edit"></i> Edit </a>
         <!--<a class="btn btn-danger btn-sm" href="<?php //echo site_url('admin/add/'.$a->id);?>" class="btn btn-small"  style="border-radius:16px;"><i class="fa fa-plus"></i> hapus</a> -->
         <a class="btn btn-success btn-sm" href="<?php echo site_url('admin/detail_anggota/'.$a->id);?>" class="btn btn-small"  style="border-radius:16px;"><i class="fa fa-plus"></i> Detail</a></td>                      
                             

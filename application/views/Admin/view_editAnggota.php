@@ -1,7 +1,7 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<?php echo site_url('peminjam/index'); ?>">Beranda</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo site_url('admin/index'); ?>">Beranda</a></li>
     <li class="breadcrumb-item active" aria-current="page">Ubah Profile</li>
   </ol>
 </nav>
@@ -13,7 +13,7 @@
                             foreach($anggota as $detail){
                         ?>
             
-                        <form action="<?php echo site_url('peminjam/profile_update'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="<?php echo site_url('admin/update_anggota/'.$detail->id); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
 
                           <div class="row form-group">
                                <div class="col col-md-3"><label for="username" class=" form-control-label">Username</label></div>

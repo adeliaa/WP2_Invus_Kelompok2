@@ -29,6 +29,15 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/footer');
 	}
 
+	function detail_anggota($id){
+		$where = array('id' => $id);
+        $data['anggota'] = $this->model_peminjam->detail($where,'tb_user')->result();
+        $this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/view_detail_anggota', $data);
+        $this->load->view('admin/footer');
+
+    }
 
 	function edit_anggota($id){
 		$where = array('id' => $id);
@@ -38,6 +47,47 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/view_editAnggota', $data);
 
     }
+
+	public function update_anggota($id)
+    {   
+        $password = $this->input->post('password');
+        $nama = $this->input->post('nama');
+        $kelas = $this->input->post('kelas');
+        $no_telp = $this->input->post('no_telp');
+        $alamat = $this->input->post('alamat');
+        
+        $data = array (
+            'nama_peminjam' => $nama,
+            'kelas' => $kelas,
+            'no_telp' => $no_telp,
+            'alamat' => $alamat,       
+            ); 
+
+        $data2 = array (
+            'password' =>  $this->hash_password($password),
+            'nama_peminjam' => $nama,
+            'kelas' => $kelas,
+            'no_telp' => $no_telp,
+            'alamat' => $alamat,       
+            ); 
+
+        $where = array (
+            'id' => $id
+        );
+
+        if($password != null){
+
+            $this->model_peminjam->update($where, $data2, 'tb_user');
+        }
+        else{
+
+            $this->model_peminjam->update($where, $data, 'tb_user');
+        
+        }
+        
+        redirect('admin/anggota');
+    }
+
 
 	function list_barang(){
         $data['tb_barang'] = $this->model_peminjam->list()->result();
@@ -182,6 +232,14 @@ class Admin extends CI_Controller {
 	}
 
 	function delete_barang($id){
+        $this->db->select('status, id_barang');
+        $this->db->where('id_barang', $id);//
+        $this->db->from('tb_peminjaman');
+        $query = $this->db->get()->row();
+        
+        $status = $query->status;
+		if($status != null){
+		if($status == "Kembali"){
 		$del = $this->model_peminjam->delbarang('tb_barang',$id);
 		if($del){
 			$this->session->set_flashdata('success', 'Berhasil dihapus');
@@ -189,8 +247,21 @@ class Admin extends CI_Controller {
 		}else{
 
 		}
+	    }
+		else{
+			$this->session->set_flashdata('success', 'Berhasil dihapus');
+			redirect(site_url('admin/list_barang'));
+		}
 	}
 
+	 else{
+		$del = $this->model_peminjam->delbarang('tb_barang',$id);
+		if($del){
+			$this->session->set_flashdata('success', 'Berhasil dihapus');
+			redirect(site_url('admin/list_barang'));
+	}
+	}
+	}
 	function booking(){
     
         //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
@@ -215,6 +286,10 @@ class Admin extends CI_Controller {
         redirect('admin/booking');
         
     }
+
+	private function hash_password($password) {
+        return password_hash($password, PASSWORD_BCRYPT);
+       }
 
 	
 
