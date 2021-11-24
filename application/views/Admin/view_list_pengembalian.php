@@ -4,7 +4,6 @@
         <li class="breadcrumb-item active" aria-current="page">Laporan Peminjaman</li>
     </ol>
 </nav>
-
 <div class="container text-center">
     <table class="table table-hover table-light">
         <thead>
