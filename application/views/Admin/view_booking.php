@@ -32,7 +32,7 @@
       <td><?php echo $pinjam->jumlah_pinjam?></td>
       <td><?php echo $pinjam->tanggal_pinjam?></td>
       <td><?php echo $pinjam->tanggal_pengembalian?></td>   
-      <td><a class="btn btn-success btn-sm" href="<?php echo site_url('admin/acc/'.$pinjam->id_peminjaman);?>" class="btn btn-small" style="border-radius:16px;"><i class="fa fa-plus"></i> Acc</a>             
+      <td><a class="btn btn-success btn-sm" href="<?php echo site_url('admin/acc/'.$pinjam->id_peminjaman);?>" class="btn btn-small" style="border-radius:16px;"><i class="fa fa-check-square-o"></i> Acc</a>             
                             
     </tr>
     <?php } ?>

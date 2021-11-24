@@ -2,7 +2,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?php echo site_url('admin/index'); ?>">Beranda</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo site_url('admin/list'); ?>">Data Barang</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo site_url('admin/list_barang'); ?>">Data Barang</a></li>
     <li class="breadcrumb-item active" aria-current="page">Tambah Data Barang</li>
   </ol>
 </nav>

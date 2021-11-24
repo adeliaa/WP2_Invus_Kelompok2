@@ -2,7 +2,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?php echo site_url('admin/index'); ?>">Beranda</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo site_url('admin/list'); ?>">Data Barang</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo site_url('admin/list_barang'); ?>">Data Barang</a></li>
     <li class="breadcrumb-item active" aria-current="page">Ubah Data Barang</li>
   </ol>
 </nav>
@@ -58,10 +58,13 @@
 						    <div class="col col-md-3"></div>
 							<div class="col-12 col-md-9">
               <!-- Button Save -->
-              <button type="submit" class="btn btn-success btn-sm">
-  						<i class="fa fa-save"></i> Simpan
-  						</button>
+                            <button type="submit" class="btn btn-success btn-sm">
+  						    <i class="fa fa-save"></i> Simpan
+  						    </button>
 
+                            <button type="reset" class="btn btn-danger btn-sm">
+							<i class="fa fa-ban"></i> Reset
+							</button>
 							<button type="submit" class="btn btn-primary btn-sm">
 							<i class="fa fa-arrow-circle-left"></i> Kembali
 							</button>

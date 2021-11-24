@@ -38,7 +38,7 @@
       <td><?php echo $pinjam->tanggal_pinjam?></td>
       <td><?php echo $pinjam->tanggal_pengembalian?></td>
       <td><?php echo $pinjam->status?></td>      
-      <td><a class="btn btn-success btn-sm" href="<?php echo site_url('peminjam/detail/'.$pinjam->id_peminjaman);?>" class="btn btn-small" style="border-radius:16px;"><i class="fa fa-file"></i> Detail</a>             
+      <td><a class="btn btn-success btn-sm" href="<?php echo site_url('peminjam/detail/'.$pinjam->id_peminjaman);?>" class="btn btn-small" style="border-radius:16px;"><i class="fa fa-file-text-o"></i> Detail</a>             
                             
     </tr>
     <?php } ?>

@@ -291,6 +291,118 @@ class Admin extends CI_Controller {
         return password_hash($password, PASSWORD_BCRYPT);
        }
 
-	
+    function profile(){
+     
+        $username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+
+        $id = $query->id;   
+
+        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+        $data['tb_user'] = $this->db->get_where('tb_user', array(
+            'id =' => $id))->result();
+        
+        $this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/view_profile', $data);
+		$this->load->view('admin/footer');
+    }
+
+	public function profile_update()
+    {   
+		$username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+     // return print($username);
+        
+        $id = $query->id;
+        $password = $this->input->post('password');
+        $nama = $this->input->post('nama');
+        
+        $data = array (
+            'nama_peminjam' => $nama    
+            ); 
+
+        $data2 = array (
+            'password' =>  $this->hash_password($password),
+            'nama_peminjam' => $nama      
+            ); 
+
+        $where = array (
+            'id' => $id
+        );
+
+        if($password != null){
+
+            $this->model_peminjam->update($where, $data2, 'tb_user');
+        }
+        else{
+
+            $this->model_peminjam->update($where, $data, 'tb_user');
+        
+        }
+        
+        redirect('admin/anggota');
+    }
+
+	function delete_anggota($id){
+        $this->db->select('status, id_user');
+        $this->db->where('id_user', $id);//
+        $this->db->from('tb_peminjaman');
+        $query = $this->db->get()->row();
+        
+        $status = $query->status;
+		if($status != null){
+		if($status == "Kembali"){
+		$del = $this->model_peminjam->deluser('tb_user',$id);
+		if($del){
+			$this->session->set_flashdata('success', 'Berhasil dihapus');
+			redirect(site_url('admin/anggota'));
+		}else{
+
+		}
+	    }
+		else{
+			$this->session->set_flashdata('success', 'Berhasil dihapus');
+			redirect(site_url('admin/anggota'));
+		}
+	}
+
+	 else{
+		$del = $this->model_peminjam->deluser('tb_user',$id);
+		if($del){
+			$this->session->set_flashdata('success', 'Berhasil dihapus');
+			redirect(site_url('admin/anggota'));
+	}
+	}
+	}
+
+	function list_peminjaman()
+	{
+		//$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where, 'view_laporan')->result();
+		$data['view_laporan'] = $this->db->get_where('view_laporan', array(
+			'status =' => 'Di pinjam'
+
+		))->result();
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/peminjaman', $data);
+		$this->load->view('admin/footer');
+	}
+	function pengembalian($id)
+	{
+		$where = array('id_peminjaman' => $id);
+		$data['view_laporan'] = $this->model_peminjam->detail($where, 'view_laporan')->result();
+		$this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/pengembalian', $data);
+		$this->load->view('admin/footer');
+	}
 
 }

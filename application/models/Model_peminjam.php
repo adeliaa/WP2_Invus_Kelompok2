@@ -16,6 +16,10 @@ class Model_peminjam extends CI_Model{
         return $this->db->delete($table,array('id_barang' => $id));
     }
 
+    function deluser($table,$id){
+        return $this->db->delete($table,array('id' => $id));
+    }
+
     function editbarang($table,$id){
         return $this->db->get_where($table,array('id_barang' => $id))->row();
     }

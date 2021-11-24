@@ -242,7 +242,7 @@ class Peminjam extends CI_Controller {
         
         }
         
-        redirect('peminjam/list');
+        redirect('peminjam/profile');
     }
 
     private function hash_password($password) {

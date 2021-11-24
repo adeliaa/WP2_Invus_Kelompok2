@@ -53,17 +53,21 @@
                                 </div>
                             </div>
                             <div class="row form-group">
-						    <div class="col col-md-3"></div>
-							<div class="col-12 col-md-9">
-							<button type="submit" class="btn btn-success btn-sm">
-							<i class="fa fa-plus"></i> Save
-							</button>
-							<button type="reset" class="btn btn-danger btn-sm">
-							<i class="fa fa-ban"></i> Reset
-							</button>
-							</div>
-						  </div>
-      
+						                <div class="col col-md-3"></div>
+							              <div class="col-12 col-md-9">
+                            <button type="submit" class="btn btn-success btn-sm">
+  						              <i class="fa fa-save"></i> Simpan
+  						              </button>
+
+                            <button type="reset" class="btn btn-danger btn-sm">
+							              <i class="fa fa-ban"></i> Reset
+							              </button>
+							              
+                            <button type="submit" class="btn btn-primary btn-sm">
+							              <i class="fa fa-arrow-circle-left"></i> Kembali
+							              </button>
+							              </div>
+						                </div>
                         </form>
                         <?php
                             }

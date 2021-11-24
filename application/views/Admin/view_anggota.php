@@ -1,7 +1,7 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<?php echo site_url('peminjam/index'); ?>">Beranda</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo site_url('admin/index'); ?>">Beranda</a></li>
     <li class="breadcrumb-item active" aria-current="page">Data Anggota</li>
   </ol>
 </nav>
@@ -27,7 +27,8 @@
       <td><?php echo $a->kelas?></td>
       <td><a class="btn btn-warning btn-sm" href="<?php echo site_url('admin/edit_anggota/'.$a->id);?>" class="btn btn-small"  style="border-radius:16px;"><i class="fa fa-edit"></i> Edit </a>
         <!--<a class="btn btn-danger btn-sm" href="<?php //echo site_url('admin/add/'.$a->id);?>" class="btn btn-small"  style="border-radius:16px;"><i class="fa fa-plus"></i> hapus</a> -->
-        <a class="btn btn-success btn-sm" href="<?php echo site_url('admin/detail_anggota/'.$a->id);?>" class="btn btn-small"  style="border-radius:16px;"><i class="fa fa-plus"></i> Detail</a></td>                      
+        <a class="btn btn-success btn-sm" href="<?php echo site_url('admin/detail_anggota/'.$a->id);?>" class="btn btn-small"  style="border-radius:16px;"><i class="fa fa-file-text-o"></i> Detail</a>
+        <a style="border-radius:16px;" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Anggota <?php echo $a->nama_peminjam?>?');" href="<?= site_url('admin/delete_anggota/'.$a->id) ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a></td>                      
                             
     </tr>
     <?php } ?>

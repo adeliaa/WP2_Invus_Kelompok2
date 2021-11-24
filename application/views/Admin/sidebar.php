@@ -22,13 +22,13 @@
                         <a href="<?php echo site_url('admin/list_barang')?>"> <i class="menu-icon fa fa-tasks"></i>Data Barang</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/anggota')?>"> <i class="menu-icon fa fa-tasks"></i>Data Anggota</a>
+                        <a href="<?php echo site_url('admin/anggota')?>"> <i class="menu-icon fa fa-id-card"></i>Data Anggota</a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('admin/booking')?>"> <i class="menu-icon fa fa-print"></i>Data Booking</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/laporan')?>"> <i class="menu-icon fa fa-print"></i>Data Peminjaman</a>
+                        <a href="<?php echo site_url('admin/list_peminjaman')?>"> <i class="menu-icon fa fa-print"></i>Data Peminjaman</a>
                     </li>
 					<li>
                         <a href="<?php echo site_url('admin/keuangan')?>"> <i class="menu-icon 	fa fa-dropbox"></i>Data Pengantian Barang</a>

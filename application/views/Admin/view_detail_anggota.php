@@ -1,8 +1,8 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<?php// echo site_url('admin/index'); ?>">Beranda</a></li>
-    <li class="breadcrumb-item"><a href="<?php// echo site_url('admin/anggota'); ?>">Data Anggota</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo site_url('admin/index'); ?>">Beranda</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo site_url('admin/anggota'); ?>">Data Anggota</a></li>
     <li class="breadcrumb-item active" aria-current="page">Detail Anggota</li>
   </ol>
 </nav> 
