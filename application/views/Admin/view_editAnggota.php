@@ -56,9 +56,9 @@
                                   <button type="reset" class="btn btn-danger btn-sm">
 							                    <i class="fa fa-ban"></i> Reset
 							                    </button>
-							                    <button type="submit" class="btn btn-primary btn-sm">
+							                    <a href="<?php echo site_url('admin/anggota/')?>"><button type="button" class="btn btn-primary btn-sm">
 							                    <i class="fa fa-arrow-circle-left"></i> Kembali
-							                    </button>
+							                    </button></a>
 							                  </div>
 						                </div>
                               

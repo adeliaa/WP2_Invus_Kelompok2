@@ -12,11 +12,13 @@
             <?php
             foreach ($view_laporan as $detail) {
 
-                $date1 = date("Y-m-d",strtotime($detail->tanggal_pengembalian));
-                $date2 = date('Y-m-d');
+                $date1 = date_create($detail->tanggal_pengembalian);
+                $date = date_create(date('Y-m-d'));
+                $diff       = date_diff($date,$date1);
+                $days       = $diff->format("%a");
 
-                $diff = abs(strtotime($date2) - strtotime($date1));
-                $denda = $diff * 10000; 
+                $denda = $days * 10000; 
+                $date2 = date('Y-m-d');
                 
             ?>
 
@@ -100,9 +102,9 @@
                             <button type="reset" class="btn btn-danger btn-sm">
 							<i class="fa fa-ban"></i> Reset
 							</button>
-							<button type="submit" class="btn btn-primary btn-sm">
+							<a href="<?php echo site_url('admin/list_peminjaman/')?>"><button type="button" class="btn btn-primary btn-sm">
 							<i class="fa fa-arrow-circle-left"></i> Kembali
-							</button>
+							</button></a>
                         </div>
                     </div>
 

@@ -32,13 +32,9 @@
                     </li>
 					<li>
                         <a href="<?php echo site_url('admin/keuangan')?>"> <i class="menu-icon 	fa fa-dropbox"></i>Data Pengantian Barang</a>
-                    </li>
+                    </li>                    
                     <li>
-                        <a href="<?php echo site_url('admin/denda')?>"> <i class="menu-icon fa fa-money"></i>Laporan Denda</a>
-                    </li>
-                    
-                    <li>
-                        <a href="<?php echo site_url('admin/denda')?>"> <i class="menu-icon fa fa-money"></i>Data Pengembalian</a>
+                        <a href="<?php echo site_url('admin/list_pengembalian')?>"> <i class="menu-icon fa fa-money"></i>Data Pengembalian</a>
                     </li>
 					<li>
 						<a href="<?php echo base_url('login/logout')?>"> <i class="menu-icon fa fa fa-sign-out"></i>Logout</a>

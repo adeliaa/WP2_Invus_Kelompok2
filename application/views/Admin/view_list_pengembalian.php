@@ -13,7 +13,7 @@
                 <th scope="col">Nama Barang</th>
                 <th scope="col">Jumlah Pinjam</th>
                 <th scope="col">Tanggal Pinjam</th>
-                <th scope="col">Tanggal Pengembalian</th>
+                <th scope="col">Tanggal Kembali</th>
                 <th scope="col">Status</th>
                 <th scope="col">Aksi</th>
 
@@ -28,9 +28,9 @@
                     <td><?php echo $pinjam->nama_barang ?></td>
                     <td><?php echo $pinjam->jumlah_pinjam ?></td>
                     <td><?php echo $pinjam->tanggal_pinjam ?></td>
-                    <td><?php echo $pinjam->tanggal_pengembalian ?></td>
+                    <td><?php echo $pinjam->tanggal_kembali ?></td>
                     <td><?php echo $pinjam->status ?></td>
-                    <td><a class="btn btn-success btn-sm" href="<?php echo site_url('admin/pengembalian/' . $pinjam->id_peminjaman); ?>" class="btn btn-small"><i class="fa fa-file"></i> kembali</a>
+                    <td><a class="btn btn-success btn-sm" href="<?php echo site_url('admin/detail_pengembalian/' . $pinjam->id_peminjaman); ?>" class="btn btn-small"><i class="fa fa-file"></i> Detail</a>
 
                 </tr>
             <?php } ?>
