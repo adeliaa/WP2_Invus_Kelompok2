@@ -392,7 +392,7 @@ class Admin extends CI_Controller {
 
 		$this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/peminjaman', $data);
+		$this->load->view('admin/view_peminjaman', $data);
 		$this->load->view('admin/footer');
 	}
 	function pengembalian($id)
@@ -401,8 +401,65 @@ class Admin extends CI_Controller {
 		$data['view_laporan'] = $this->model_peminjam->detail($where, 'view_laporan')->result();
 		$this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/pengembalian', $data);
+		$this->load->view('admin/view_pengembalian', $data);
 		$this->load->view('admin/footer');
 	}
+
+	function update_pengembalian()
+    {   
+		$id_peminjaman = $this->input->post('id_peminjaman');
+		$tanggal_kembali = $this->input->post('tanggal_kembali');
+        $kondisi = $this->input->post('kondisi');
+        $denda = $this->input->post('denda');
+        $biaya = $this->input->post('biaya');
+		$id_barang = $this->input->post('id_barang');
+		$jumlah_pinjam = $this->input->post('jumlah_pinjam');
+            
+        $data = array (
+            'tanggal_kembali' => $tanggal_kembali,
+            'kondisi_kembali' => $kondisi,
+            'denda' => $denda,
+            'biaya_penggantian_barang' => $biaya,
+			'status' => 'Kembali'  
+            ); 
+
+		$data2 = array (
+            'tanggal_kembali' => $tanggal_kembali,
+            'kondisi_kembali' => $kondisi,
+            'denda' => $denda,
+            'biaya_penggantian_barang' => $biaya,
+			'status' => 'Penggantian Barang'  
+            ); 
+
+        $this->db->select('stok, id_barang');
+        $this->db->where('id_barang', $id_barang);
+        $this->db->from('tb_barang');
+        $query1 = $this->db->get()->row();
+        
+        $oldStok = $query1->stok;
+        $newStok = $oldStok + $jumlah_pinjam;
+
+		$stok = array(
+			'stok' =>$newStok
+		);
+
+        $where = array (
+            'id_peminjaman' => $id_peminjaman
+        );
+
+		$where2 = array(
+			'id_barang' => $id_barang
+		);
+
+		if($kondisi == "Berfungsi"){
+			$this->model_peminjam->update($where, $data, 'tb_peminjaman');
+			$this->model_peminjam->update($where2, $stok, 'tb_barang');
+        	redirect('admin/list_peminjaman');
+		}
+		else{
+			$this->model_peminjam->update($where, $data2, 'tb_peminjaman');
+        	redirect('admin/list_peminjaman');
+		}
+    }
 
 }

@@ -11,9 +11,16 @@
         <div class="card-body card-block">
             <?php
             foreach ($view_laporan as $detail) {
+
+                $date1 = date("Y-m-d",strtotime($detail->tanggal_pengembalian));
+                $date2 = date('Y-m-d');
+
+                $diff = abs(strtotime($date2) - strtotime($date1));
+                $denda = $diff * 10000; 
+                
             ?>
 
-                <form action="<?php echo site_url('peminjam/laporan'); ?>" method="" enctype="multipart/form-data" class="form-horizontal">
+                <form action="<?php echo site_url('admin/update_pengembalian'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="id_peminjaman" class=" form-control-label">id</label></div>
                         <div class="col-12 col-md-9"><input type="text" id="id_peminjaman" name="id_peminjaman" value="<?php echo $detail->id_peminjaman; ?>" class="form-control" readonly></div>
@@ -32,6 +39,7 @@
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="nama_barang" class=" form-control-label">Nama Barang</label></div>
                         <div class="col-12 col-md-9"><input type="text" id="nama_barang" name="nama_barang" value="<?php echo $detail->nama_barang; ?>" class="form-control" readonly></div>
+                        <div class="col-12 col-md-9"><input type="hidden" id="id_barang" name="id_barang" value="<?php echo $detail->id_barang; ?>" class="form-control" readonly></div>
                     </div>
 
                     <div class="row form-group">
@@ -51,7 +59,7 @@
 
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="tanggal_kembali" class=" form-control-label">Tanggal Kembali</label></div>
-                        <div class="col-12 col-md-9"><input type="date" id="tanggal_kembali" name="tanggal_kembali" class="form-control" required></div>
+                        <div class="col-12 col-md-9"><input type="date" id="tanggal_kembali" name="tanggal_kembali" class="form-control" value="<?php echo $date2; ?>" readonly></div>
                     </div>
 
                     <div class="row form-group">
@@ -59,14 +67,22 @@
                         <div class="col-12 col-md-9"><input type="text" id="kondisi_pinjam" name="kondisi_pinjam" class="form-control" value="<?php echo $detail->kondisi_saat_pinjam; ?>" readonly></div>
                     </div>
 
-                    <div class="row form-group">
-                        <div class="col col-md-3"><label for="kondisi_kembali" class=" form-control-label">Kondisi Barang Saat Kembali</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="kondisi_kembali" name="kondisi_kembali" class="form-control" required></div>
+                    <div class="row form-group"> <!--dibuat dropdown-->
+                        <div class="col col-md-3">
+                            <label class="form-control-label" for="kondisi">Kondisi Barang</label>
+                        </div>
+                    <div class="col-12 col-md-9">
+                        <select id="kondisi" class="form-control" name="kondisi">
+                        <option value="Berfungsi">Berfungsi</option>
+                        <option value="Rusak">Rusak</option>
+                        <option value="Hilang">Hilang</option>
+                        </select>
                     </div>
+            </div>
 
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="denda" class=" form-control-label">Denda</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="denda" name="denda" class="form-control" required></div>
+                        <div class="col-12 col-md-9"><input type="text" id="denda" name="denda" class="form-control" value="<?php echo $denda ?>" readonly></div>
                     </div>
 
                     <div class="row form-group">
