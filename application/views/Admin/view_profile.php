@@ -5,6 +5,13 @@
     <li class="breadcrumb-item active" aria-current="page">Ubah Profile</li>
   </ol>
 </nav>
+  <?php if($this->session->flashdata('Message')){?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 10px; width:100vh;">
+        <strong><?= $this->session->flashdata('Message'); ?>!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php } ?>
+
 		<div class="container">
         <div class="card">
 
@@ -23,6 +30,8 @@
                           <div class="row form-group">
                                <div class="col col-md-3"><label for="password" class=" form-control-label">Ganti Password</label></div>
                                <div class="col-12 col-md-9"><input type="text" id="password" name="password" class="form-control"></div>
+                               <div class="col col-md-3"></div>
+                               <div class="col-12 col-md-9"><a><?php echo form_error('password'); ?></a></div>
                           </div>
 
                           <div class="row form-group">
@@ -41,9 +50,9 @@
                                                 <button type="reset" class="btn btn-danger btn-sm">
 							                    <i class="fa fa-ban"></i> Reset
 							                    </button>
-							                    <button type="submit" class="btn btn-primary btn-sm">
+							                    <a href="<?php echo site_url('admin/index/')?>"><button type="button" class="btn btn-primary btn-sm">
 							                    <i class="fa fa-arrow-circle-left"></i> Kembali
-							                    </button>
+							                    </button></a>
 							                  </div>
 						                </div>
                               

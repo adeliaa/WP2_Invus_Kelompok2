@@ -7,7 +7,7 @@
 </nav>
 		<div class="container">
         <div class="card">
-
+        
                       <div class="card-body card-block">
                         <?php
                             foreach($anggota as $detail){
@@ -23,6 +23,9 @@
                           <div class="row form-group">
                                <div class="col col-md-3"><label for="password" class=" form-control-label">Ganti Password</label></div>
                                <div class="col-12 col-md-9"><input type="text" id="password" name="password" class="form-control"></div>
+                               <div class="col col-md-3"></div>
+                          </div>
+                               <div class="col-12 col-md-9"><a><?php echo form_error('password'); ?></a></div>
                           </div>
 
                           <div class="row form-group">

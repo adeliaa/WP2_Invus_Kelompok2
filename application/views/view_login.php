@@ -1,6 +1,9 @@
 <html>
     <head>
-        <title></title>
+        <title>Halaman Login</title>
+        <link rel="shortcut icon" href="<?php echo base_url('assets/img/logoo.png')?>">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <style>
             body{
   background-image: url("<?php echo base_url('assets/img/2.jpg'); ?>");
@@ -96,13 +99,13 @@
     </head>
     <body>
     <div class="vid-container">
-  <video id="Video1" class="bgvid back" autoplay="false" muted="muted" preload="auto" loop>
-      <source src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4" type="video/mp4">
-  </video>
-  <div class="inner-container">
-    <video id="Video2" class="bgvid inner" autoplay="false" muted="muted" preload="auto" loop>
-      <source src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4" type="video/mp4">
-    </video>
+    <?php if($this->session->flashdata('flash')){?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Registrasi Akun Berhasil, <strong>Silahkan <?= $this->session->flashdata('flash'); ?>!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php } ?>
+<div class="inner-container">
     <div class="box">
       <h1>Login</h1>
       <form action="<?php echo base_url('login/aksi_login'); ?>" method="post">
@@ -113,31 +116,6 @@
     </div>
   </div>
 </div>
-<script>
-    // Easy way to wait for all videos to load before start playing
-
-var promises = [];
-function makePromise(i, video) {
-  promises[i] = new $.Deferred();
-  // This event tells us video can be played all the way through, without stopping or buffering
-  video.oncanplaythrough = function() {
-    // Resolve the promise
-    promises[i].resolve();
-  }
-}
-// Pause all videos and create the promise array
-$('video').each(function(index){
-  this.pause();
-  makePromise(index, this);
-})
-
-// Wait for all promises to resolve then start playing
-$.when.apply(null, promises).done(function () {
-  $('video').each(function(){
-    this.play();
-  });
-});
-
-</script>
+    <script src="<?php echo base_url('assets/js/vendor/jquery-2.1.4.min.js');?>"></script>
     </body>
 </html>

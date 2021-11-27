@@ -1,9 +1,15 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?php echo site_url('admin/index'); ?>">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Laporan Peminjaman</li>
+        <li class="breadcrumb-item active" aria-current="page">Data Pengembalian</li>
     </ol>
 </nav>
+<?php if($this->session->flashdata('Message')){?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 10px; width:100vh;">
+        <strong><?= $this->session->flashdata('Message'); ?>!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php } ?>
 <div class="container text-center">
     <table class="table table-hover table-light">
         <thead>

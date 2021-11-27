@@ -9,10 +9,12 @@ class Login extends CI_Controller{
 	}
  
 	function index(){
-		$this->load->view('view_login');
+    $data['judul'] = 'Halaman Login';
+		$this->load->view('view_login', $data);
 	}
 
     public function regis(){
+        $data['judul'] = 'Halaman Regis';
         $data = new stdClass();
         //Validation Rules
         $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[tb_user.username]', array('is_unique' => 'This username already exists. Please choose another one.'));
@@ -26,9 +28,9 @@ class Login extends CI_Controller{
          $level = "Peminjam";
          $nama = $this->input->post('nama');
          if ($this->model_login->create_user($username, $password, $level, $nama)) {
+          $this->session->set_flashdata('flash', 'login');
           redirect('login');
          } else {
-          echo "<script>alert('Wrong Username. Try again.')</script>";
           redirect('login/regis');
          }
         }

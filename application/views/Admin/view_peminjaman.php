@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?php echo site_url('admin/index'); ?>">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Laporan Peminjaman</li>
+        <li class="breadcrumb-item active" aria-current="page">Data Peminjaman</li>
     </ol>
 </nav>
 <div class="dropdown2" style="padding-left:15px;">
@@ -11,6 +11,7 @@
       <a href="<?php echo base_url('admin/list_peminjaman_harian')?>">List Perhari</a>
     </div>
   </div>
+
 <div class="container text-center">
     <table class="table table-hover table-light">
         <thead>

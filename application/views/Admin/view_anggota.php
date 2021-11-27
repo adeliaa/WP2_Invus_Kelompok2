@@ -5,7 +5,21 @@
     <li class="breadcrumb-item active" aria-current="page">Data Anggota</li>
   </ol>
 </nav>
-		<div class="container text-center">
+    <?php if($this->session->flashdata('Message')){?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 10px; width:100vh;">
+        <strong><?= $this->session->flashdata('Message'); ?>!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php } ?>
+
+    <?php if($this->session->flashdata('Message1')){?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 10px; width:100vh;">
+        <strong><?= $this->session->flashdata('Message1'); ?>!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php } ?>
+    
+    <div class="container text-center">
 		<table class="table table-hover table-light" style="widht:auto;">
   <thead>
     <tr>

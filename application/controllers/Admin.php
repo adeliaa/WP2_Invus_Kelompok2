@@ -22,7 +22,6 @@ class Admin extends CI_Controller {
 
         //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
         $data['anggota'] = $this->db->get_where('tb_user', array('level =' => 'Peminjam'))->result();
-
         $this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
 	    $this->load->view('admin/view_anggota', $data);
@@ -50,6 +49,15 @@ class Admin extends CI_Controller {
 
 	public function update_anggota($id)
     {   
+		
+        $this->form_validation->set_rules('password', 'Password', 'trim|min_length[8]');
+        if ($this->form_validation->run() == false) {
+			$where = array('id' => $id);
+        	$data['anggota'] = $this->model_peminjam->pinjam($where,'tb_user')->result();
+        	$this->load->view('admin/header');
+			$this->load->view('admin/sidebar');
+			$this->load->view('admin/view_editAnggota', $data);
+        } else {
         $password = $this->input->post('password');
         $nama = $this->input->post('nama');
         $kelas = $this->input->post('kelas');
@@ -84,9 +92,10 @@ class Admin extends CI_Controller {
             $this->model_peminjam->update($where, $data, 'tb_user');
         
         }
-        
+		$this->session->set_flashdata('Message', 'Data Anggota berhasil di Updated !');
         redirect('admin/anggota');
     }
+}
 
 
 	function list_barang(){
@@ -301,6 +310,25 @@ class Admin extends CI_Controller {
 
 	public function profile_update()
     {   
+		$this->form_validation->set_rules('password', 'Password', 'trim|min_length[8]');
+        if ($this->form_validation->run() == false) {
+			$username = $this->session->userdata('username');
+        	$this->db->select('username, id');
+        	$this->db->where('username', $username);//
+        	$this->db->from('tb_user');
+        	$query = $this->db->get()->row();
+
+			$id = $query->id;   
+
+			//$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+			$data['tb_user'] = $this->db->get_where('tb_user', array(
+				'id =' => $id))->result();
+			
+			$this->load->view('admin/header');
+			$this->load->view('admin/sidebar');
+			$this->load->view('admin/view_profile', $data);
+			$this->load->view('admin/footer');
+        } else {
 		$username = $this->session->userdata('username');
         $this->db->select('username, id');
         $this->db->where('username', $username);//
@@ -334,10 +362,10 @@ class Admin extends CI_Controller {
             $this->model_peminjam->update($where, $data, 'tb_user');
         
         }
-        
-        redirect('admin/anggota');
+        $this->session->set_flashdata('Message', 'Data berhasil di update !');
+        redirect('admin/profile');
     }
-
+	}
 	function delete_anggota($id){
 		$data= $this->db->get_where('tb_peminjaman', array(
             'id_user =' => $id, 'status !=' => 'Kembali'))->result();
@@ -345,15 +373,16 @@ class Admin extends CI_Controller {
 		if($data == null){
 		$del = $this->model_peminjam->deluser('tb_user',$id);
 			if($del){
-				$this->session->set_flashdata('success', 'Berhasil dihapus');
+				$this->session->set_flashdata('Message', 'Data berhasil di hapus !');
 				redirect(site_url('admin/anggota'));
 			}else{
-					
+				$this->session->set_flashdata('Message1', 'Data tidak berhasil di hapus karena masih ada peminjaman !');
+				redirect(site_url('admin/anggota'));
 			}
 		}
 		else{
-			$this->session->set_flashdata('success', 'Berhasil dihapus');
-			redirect(site_url('admin/anggota'));
+				$this->session->set_flashdata('Message1', 'Data tidak berhasil di hapus karena masih ada peminjaman !');
+				redirect(site_url('admin/anggota'));
 		}
 		}
 
@@ -456,12 +485,24 @@ class Admin extends CI_Controller {
 		if($kondisi == "Berfungsi"){
 			$this->model_peminjam->update($where, $data, 'tb_peminjaman');
 			$this->model_peminjam->update($where2, $stok, 'tb_barang');
-        	redirect('admin/list_peminjaman');
+			$this->session->set_flashdata('Message', 'Proses pengembalian barang berhasil !');        	
+			redirect('admin/list_pengembalian');
 		}
 		else{
 			$this->model_peminjam->update($where, $data2, 'tb_peminjaman');
-        	redirect('admin/list_peminjaman');
+        	$this->session->set_flashdata('Message', 'Lunasi pembayaran ganti rugi barang !');
+			redirect('admin/list_penggantian');
 		}
+    }
+
+	function detail_pengembalian($id){
+		$where = array('id_peminjaman' => $id);
+        $data['pengembalian'] = $this->model_peminjam->detail($where,'view_laporan')->result();
+        $this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/detail_pengembalian', $data);
+        $this->load->view('admin/footer');
+
     }
 
 }

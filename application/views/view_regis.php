@@ -1,6 +1,8 @@
 <html>
     <head>
-        <title></title>
+        <title>Halaman Regis</title>
+        <link rel="shortcut icon" href="<?php echo base_url('assets/img/logoo.png')?>">
+
         <style>
             body{
   background-image:  url("<?php echo base_url('assets/img/2.jpg'); ?>");
@@ -13,7 +15,6 @@
   background-position: center;}
 
 
-}
 .vid-container{
   position:relative;
   height:100vh;
@@ -96,52 +97,23 @@
     </head>
     <body>
     <div class="vid-container">
-  <video id="Video1" class="bgvid back" autoplay="false" muted="muted" preload="auto" loop>
-      <source src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4" type="video/mp4">
-  </video>
   <div class="inner-container">
-    <video id="Video2" class="bgvid inner" autoplay="false" muted="muted" preload="auto" loop>
-      <source src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4" type="video/mp4">
-    </video>
     <div class="box">
       <h1>Register</h1>
       <form action="<?php echo base_url('login/regis'); ?>" method="post">
       <input type="text" placeholder="Username" name="username" required/>
-      <?php echo form_error('username'); ?>
-      <input type="password" placeholder="Password" name="password" require/>
-      <?php echo form_error('password'); ?>
+      <?php echo form_error('username'); ?> 
+      <input type="password" placeholder="Password" name="password" required/>
+      <?php echo form_error('password'); ?> 
       <input type="text" placeholder="Nama Lengkap" name="nama" required/>
-      <?php echo form_error('nama'); ?>
+      <?php echo form_error('nama'); ?> 
       <button>Sign up</button>
       <p>a member? <a href="<?php echo site_url('login')?>" style="color:black;"><span>Log in</span></a></p>
     </div>
   </div>
 </div>
-<script>
-    // Easy way to wait for all videos to load before start playing
+    <script src="<?php echo base_url('assets/js/vendor/jquery-2.1.4.min.js');?>"></script>
 
-var promises = [];
-function makePromise(i, video) {
-  promises[i] = new $.Deferred();
-  // This event tells us video can be played all the way through, without stopping or buffering
-  video.oncanplaythrough = function() {
-    // Resolve the promise
-    promises[i].resolve();
-  }
-}
-// Pause all videos and create the promise array
-$('video').each(function(index){
-  this.pause();
-  makePromise(index, this);
-})
-
-// Wait for all promises to resolve then start playing
-$.when.apply(null, promises).done(function () {
-  $('video').each(function(){
-    this.play();
-  });
-});
-
-</script>
+    
     </body>
 </html>

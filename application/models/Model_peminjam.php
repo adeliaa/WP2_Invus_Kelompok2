@@ -16,6 +16,11 @@ class Model_peminjam extends CI_Model{
         return $this->db->delete($table,array('id_barang' => $id));
     }
 
+    public function cekData($where = null)
+    {
+    return $this->db->get_where('tb_user', $where);
+    }
+
     function deluser($table,$id){
         return $this->db->delete($table,array('id' => $id));
     }

@@ -15,10 +15,10 @@ class Model_login extends CI_Model {
      if (password_verify($password, $hash)){
       return $query->result();
      } else {
-      echo "<script>alert('Wrong Password. Try again.')</script>";
+      echo "<script>alert('Password salah. Ulangi kembali.')</script>";
      }
     } else {
-     echo "<script>alert('Wrong Username. Try again.')</script>";
+     echo "<script>alert('Username salah. Ulangi kembali.')</script>";
     }
    }
    
@@ -29,7 +29,9 @@ class Model_login extends CI_Model {
      'level'  => $level,
      'nama_peminjam' => $nama
     );
+
     return $this->db->insert('tb_user', $data);
+    
    }
    
    private function hash_password($password) {

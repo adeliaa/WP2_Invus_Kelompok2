@@ -12,9 +12,10 @@ class Peminjam extends CI_Controller {
 	}
  
 	function index(){
+        $data['user'] = $this->model_peminjam->cekData(['username' => $this->session->userdata('username')])->row_array();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar');
-		$this->load->view('peminjam/view_beranda');
+		$this->load->view('peminjam/view_beranda', $data);
 		$this->load->view('template/footer');
 	}
 
@@ -199,6 +200,26 @@ class Peminjam extends CI_Controller {
 
     public function profile_update()
     {   
+        $this->form_validation->set_rules('password', 'Password', 'trim|min_length[8]');
+        if ($this->form_validation->run() == false) {
+			$username = $this->session->userdata('username');
+            $this->db->select('username, id');
+            $this->db->where('username', $username);//
+            $this->db->from('tb_user');
+            $query = $this->db->get()->row();
+
+            $id = $query->id;   
+
+            //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+            $data['tb_user'] = $this->db->get_where('tb_user', array(
+                'id =' => $id))->result();
+            
+            $this->load->view('template/header');
+            $this->load->view('template/sidebar');
+            $this->load->view('peminjam/view_profile', $data);
+            $this->load->view('template/footer');
+        } else {
+        $data['user'] = $this->model_peminjam->cekData(['username' => $this->session->userdata('username')])->row_array();
 		$username = $this->session->userdata('username');
         $this->db->select('username, id');
         $this->db->where('username', $username);//
@@ -213,19 +234,51 @@ class Peminjam extends CI_Controller {
         $no_telp = $this->input->post('no_telp');
         $alamat = $this->input->post('alamat');
         
+        $upload_image = $_FILES['image']['name'];
+        if ($upload_image) {
+        $config['upload_path'] = './assets/img/profile/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '3000';
+        $config['max_width'] = '1024';
+        $config['max_height'] = '1000';
+        $config['file_name'] = 'pro' . time();
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('image')) {
+        $gambar_lama =trim($data['user']['image']);
+        if ($gambar_lama != 'default.jpg') {
+            $path = './assets/img/profile/'.$gambar_lama;
+            chmod($path, 0777);
+            unlink($path);
+            
+        //unlink(FCPATH . 'assets/img/profile/' . $gambar_lama);
+        }
+        $gambar_baru = $this->upload->data('file_name');
+        $this->db->set('image', $gambar_baru);
+        } else { }
+        }
+    
         $data = array (
             'nama_peminjam' => $nama,
             'kelas' => $kelas,
             'no_telp' => $no_telp,
-            'alamat' => $alamat,       
-            ); 
+            'alamat' => $alamat    
+            );
+            
+        $data1 = array (
+            'nama_peminjam' => $nama,
+            'kelas' => $kelas,
+            'no_telp' => $no_telp,
+            'alamat' => $alamat,
+            'image' => $gambar_baru    
+            );
 
         $data2 = array (
             'password' =>  $this->hash_password($password),
             'nama_peminjam' => $nama,
             'kelas' => $kelas,
             'no_telp' => $no_telp,
-            'alamat' => $alamat,       
+            'alamat' => $alamat,
+            'image' => $gambar_baru       
             ); 
 
         $where = array (
@@ -236,14 +289,21 @@ class Peminjam extends CI_Controller {
 
             $this->model_peminjam->update($where, $data2, 'tb_user');
         }
+        elseif($gambar_baru != null){
+
+            $this->model_peminjam->update($where, $data3, 'tb_user');
+        }
         else{
 
             $this->model_peminjam->update($where, $data, 'tb_user');
         
         }
-        
+        $this->session->set_flashdata('Message', 'Data berhasil di update !');
+
         redirect('peminjam/profile');
     }
+}
+    
 
     private function hash_password($password) {
         return password_hash($password, PASSWORD_BCRYPT);
