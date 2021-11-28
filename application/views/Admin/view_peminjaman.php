@@ -37,7 +37,7 @@
                     <td><?php echo $pinjam->tanggal_pinjam ?></td>
                     <td><?php echo $pinjam->tanggal_pengembalian ?></td>
                     <td><?php echo $pinjam->status ?></td>
-                    <td><a class="btn btn-success btn-sm" href="<?php echo site_url('admin/pengembalian/' . $pinjam->id_peminjaman); ?>" class="btn btn-small"><i class="fa fa-file"></i> kembali</a>
+                    <td><a class="btn btn-success btn-sm" href="<?php echo site_url('admin/pengembalian/' . $pinjam->id_peminjaman); ?>" class="btn btn-small" style="border-radius:16px;"><i class="fa fa-share-square-o"></i> kembali</a>
 
                 </tr>
             <?php } ?>

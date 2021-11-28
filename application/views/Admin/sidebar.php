@@ -19,22 +19,22 @@
                         <a href="<?php echo site_url('admin/index')?>"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/list_barang')?>"> <i class="menu-icon fa fa-tasks"></i>Data Barang</a>
+                        <a href="<?php echo site_url('admin/list_barang')?>"> <i class="menu-icon fa fa-archive"></i>Data Barang</a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('admin/anggota')?>"> <i class="menu-icon fa fa-id-card"></i>Data Anggota</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/booking')?>"> <i class="menu-icon fa fa-print"></i>Data Booking</a>
+                        <a href="<?php echo site_url('admin/booking')?>"> <i class="menu-icon fa fa-calendar-plus-o"></i>Data Booking</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin/list_peminjaman')?>"> <i class="menu-icon fa fa-print"></i>Data Peminjaman</a>
+                        <a href="<?php echo site_url('admin/list_peminjaman')?>"> <i class="menu-icon fa fa-inbox"></i>Data Peminjaman</a>
                     </li>
 					<li>
-                        <a href="<?php echo site_url('admin/keuangan')?>"> <i class="menu-icon 	fa fa-dropbox"></i>Data Pengantian Barang</a>
+                        <a href="<?php echo site_url('admin/keuangan')?>"> <i class="menu-icon 	fa fa-money"></i>Data Pengantian Barang</a>
                     </li>                    
                     <li>
-                        <a href="<?php echo site_url('admin/list_pengembalian')?>"> <i class="menu-icon fa fa-money"></i>Data Pengembalian</a>
+                        <a href="<?php echo site_url('admin/list_pengembalian')?>"> <i class="menu-icon fa fa-list-alt"></i>Data Pengembalian</a>
                     </li>
 					<li>
 						<a href="<?php echo base_url('login/logout')?>"> <i class="menu-icon fa fa fa-sign-out"></i>Logout</a>

@@ -277,8 +277,7 @@ class Peminjam extends CI_Controller {
             'nama_peminjam' => $nama,
             'kelas' => $kelas,
             'no_telp' => $no_telp,
-            'alamat' => $alamat,
-            'image' => $gambar_baru       
+            'alamat' => $alamat       
             ); 
 
         $where = array (

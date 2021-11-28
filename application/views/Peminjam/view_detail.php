@@ -86,8 +86,13 @@
                             <div class="row form-group">
 						    <div class="col col-md-3"></div>
 							<div class="col-12 col-md-9">
-							<button type="submit" class="btn btn-primary btn-sm">
-							<i class="fa fa-arrow-circle-left"></i> Kembali
+							<button onclick="goBack()" class="btn btn-primary btn-sm">
+							<i class="fa fa-arrow-circle-left"></i> Kembali                                  
+                                        <script>
+                                        function goBack() {
+                                             window.location=history.go(-1);
+                                        }
+                                        </script>
 							</button>
 							</div>
 						  </div>

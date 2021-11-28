@@ -29,7 +29,7 @@
 
                           <div class="row form-group">
                                <div class="col col-md-3"><label for="password" class=" form-control-label">Ganti Password</label></div>
-                               <div class="col-12 col-md-9"><input type="text" id="password" name="password" class="form-control">
+                               <div class="col-12 col-md-9"><input type="password" id="password" name="password" class="form-control">
                                <div class="col col-md-3"></div>
                                <div class="col-12 col-md-9"><a><?php echo form_error('password'); ?></a></div>
                           </div>

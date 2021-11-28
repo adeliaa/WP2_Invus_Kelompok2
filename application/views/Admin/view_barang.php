@@ -33,8 +33,8 @@
       <td><?php echo $barang->stok?></td>
       <td>
        <!-- <a class="btn btn-success btn-sm" href="<?php //echo site_url('admin/add/'.$barang->id_barang);?>" class="btn btn-small"><i class="fa fa-plus"></i> Pinjam</a> -->
-        <a class="btn btn-warning btn-sm" href="<?php echo site_url('admin/edit_barang/'.$barang->id_barang);?>" class="btn btn-small"><i class="fa fa-pencil"></i> Edit</a>
-        <a onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Barang <?php echo $barang->nama_barang?>?');" href="<?= site_url('admin/delete_barang/'.$barang->id_barang) ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>
+        <a class="btn btn-warning btn-sm" href="<?php echo site_url('admin/edit_barang/'.$barang->id_barang);?>" class="btn btn-small" style="border-radius:16px;"><i class="fa fa-pencil"></i> Edit</a>
+        <a onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Barang <?php echo $barang->nama_barang?>?');" href="<?= site_url('admin/delete_barang/'.$barang->id_barang) ?>" class="btn btn-danger btn-sm" style="border-radius:16px;"><i class="fa fa-trash"></i> Hapus</a>
       </td>
     </tr>
     <?php } ?>

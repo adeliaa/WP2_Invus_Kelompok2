@@ -1,4 +1,9 @@
 <!-- Begin Page Content -->
+<div class="jumbotron" style="height:200px">
+  <h1>Hallo <?php echo $this->session->userdata("username"); ?></h1>
+  <p style="margin-bottom:0px">Selamat Datang di Website Inventory Sekolah!</p>
+  <p>Silahkan lengkapi data anda dengan mengubah profile!</p>
+</div>
 <div class="card mb-3" style="max-width: 540px;">
  <div class="row no-gutters">
  <div class="col-md-4">
