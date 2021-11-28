@@ -61,7 +61,11 @@
                           <div class="col-sm-10">
                           <div class="row">
                           <div class="col-sm-3">
-                          <img src="<?=base_url('assets/img/profile/') . $detail->image; ?>" class="img-thumbnail" alt="">
+                          <?php if($detail->image == 'default.png'){ ?>
+                            <img src="<?= base_url('assets/img/') . $detail->image; ?>" class="card-img" alt="...">
+                            <?php }else{?>
+                              <img src="<?= base_url('assets/img/profile/') . $detail->image; ?>" class="card-img" alt="...">
+                            <?php } ?>
                           </div>
                           <div class="col-sm-9">
                           <div class="custom-file">

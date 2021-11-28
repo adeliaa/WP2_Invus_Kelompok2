@@ -16,7 +16,7 @@
                 <ul class="nav navbar-nav">
                     <h3 class="menu-title">Menu</h3><!-- /.menu-title -->
                     <li>
-                        <a href="<?php echo site_url('admin/index')?>"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="<?php echo site_url('admin/index')?>"> <i class="menu-icon fa fa-home"></i>Beranda </a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('admin/list_barang')?>"> <i class="menu-icon fa fa-archive"></i>Data Barang</a>
@@ -31,7 +31,7 @@
                         <a href="<?php echo site_url('admin/list_peminjaman')?>"> <i class="menu-icon fa fa-inbox"></i>Data Peminjaman</a>
                     </li>
 					<li>
-                        <a href="<?php echo site_url('admin/keuangan')?>"> <i class="menu-icon 	fa fa-money"></i>Data Pengantian Barang</a>
+                        <a href="<?php echo site_url('admin/gantiBarang')?>"> <i class="menu-icon 	fa fa-money"></i>Data Pengantian Barang</a>
                     </li>                    
                     <li>
                         <a href="<?php echo site_url('admin/list_pengembalian')?>"> <i class="menu-icon fa fa-list-alt"></i>Data Pengembalian</a>

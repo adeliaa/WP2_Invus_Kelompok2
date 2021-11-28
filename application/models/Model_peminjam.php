@@ -2,13 +2,11 @@
 
 class Model_peminjam extends CI_Model{
      
-	function list()
-    {
+	function list(){
 		return $this->db->get('tb_barang');
 	}
     
-    function list_peminjaman($table ,$where)
-    {
+    function list_peminjaman($table ,$where){
         return $this->db->get_where('view_laporan', $where);
     }
 
@@ -16,9 +14,8 @@ class Model_peminjam extends CI_Model{
         return $this->db->delete($table,array('id_barang' => $id));
     }
 
-    public function cekData($where = null)
-    {
-    return $this->db->get_where('tb_user', $where);
+    public function cekData($where = null){
+        return $this->db->get_where('tb_user', $where);
     }
 
     function deluser($table,$id){
@@ -33,9 +30,7 @@ class Model_peminjam extends CI_Model{
         return $this->db->update($table,$data,array('id_barang' => $id));
     }
 
-
-    function save($data,$table)
-    {
+    function save($data,$table){
         $this->db->insert('tb_peminjaman',$data);      
     }
 
@@ -55,9 +50,8 @@ class Model_peminjam extends CI_Model{
         return $this->db->get_where($table,$where);
     }
 
-        function update($where,$data,$table){
+    function update($where,$data,$table){
 		$this->db->where($where);
 		$this->db->update($table,$data);
-    
     }
 }

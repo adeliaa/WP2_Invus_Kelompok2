@@ -16,7 +16,7 @@
                 <ul class="nav navbar-nav">
                     <h3 class="menu-title">Menu</h3><!-- /.menu-title -->
                     <li>
-                        <a href="<?php echo site_url('peminjam/index')?>"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="<?php echo site_url('peminjam/index')?>"> <i class="menu-icon fa fa-home"></i>Home </a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('peminjam/list')?>"> <i class="menu-icon fa fa-tasks"></i>Daftar Barang</a>

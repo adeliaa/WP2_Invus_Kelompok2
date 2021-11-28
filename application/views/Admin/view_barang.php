@@ -4,8 +4,21 @@
     <li class="breadcrumb-item"><a href="<?php echo site_url('admin/index'); ?>">Beranda</a></li>
     <li class="breadcrumb-item active" aria-current="page">Data Barang</li>
   </ol>
-
 </nav>
+<?php if($this->session->flashdata('message')){?>
+  <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 10px; width:100vh;">
+    <strong><?= $this->session->flashdata('message'); ?>!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<?php } ?>
+
+<?php if($this->session->flashdata('message1')){?>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 10px; width:100vh;">
+    <strong><?= $this->session->flashdata('message1'); ?>!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<?php } ?>
+
 		<div class="container text-center">
       <div class="col-md-1" style="margin-bottom:2%">
         <a href="<?= site_url('admin/add_barang'); ?>" class="btn btn-dark rounded">Tambah Barang</a>

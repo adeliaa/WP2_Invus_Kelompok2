@@ -8,9 +8,8 @@ class Peminjam extends CI_Controller {
         $this->load->model('model_peminjam');
             if($this->session->userdata('level') != "Peminjam"){
                 redirect(site_url("login"));}
-		
 	}
- 
+    //fungsi untuk menampilkan halaman beranda
 	function index(){
         $data['user'] = $this->model_peminjam->cekData(['username' => $this->session->userdata('username')])->row_array();
 		$this->load->view('template/header');
@@ -18,147 +17,138 @@ class Peminjam extends CI_Controller {
 		$this->load->view('peminjam/view_beranda', $data);
 		$this->load->view('template/footer');
 	}
-
-    function list(){
-        $data['tb_barang'] = $this->model_peminjam->list()->result();
-        
-        $this->load->view('template/header');
-		$this->load->view('template/sidebar');
-		$this->load->view('peminjam/view_barang', $data);
-		$this->load->view('template/footer');
-    }
-
+    //fungsi untuk menampilkan halaman ubah profile
     function profile(){
-     
         $username = $this->session->userdata('username');
         $this->db->select('username, id');
         $this->db->where('username', $username);//
         $this->db->from('tb_user');
         $query = $this->db->get()->row();
-
         $id = $query->id;   
-
-        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
-        $data['tb_user'] = $this->db->get_where('tb_user', array(
-            'id =' => $id))->result();
-        
+        $data['tb_user'] = $this->db->get_where('tb_user', array('id =' => $id))->result();
         $this->load->view('template/header');
 		$this->load->view('template/sidebar');
 		$this->load->view('peminjam/view_profile', $data);
 		$this->load->view('template/footer');
     }
+    //fungsi untuk proses ubah data profile/ data user
+    public function profile_update()
+    {   
+        $this->form_validation->set_rules('password', 'Password', 'trim|min_length[8]');
+        if ($this->form_validation->run() == false) {
+			$username = $this->session->userdata('username');
+            $this->db->select('username, id');
+            $this->db->where('username', $username);//
+            $this->db->from('tb_user');
+            $query = $this->db->get()->row();
+            $id = $query->id;   
+            $data['tb_user'] = $this->db->get_where('tb_user', array('id =' => $id))->result();
+            $this->load->view('template/header');
+            $this->load->view('template/sidebar');
+            $this->load->view('peminjam/view_profile', $data);
+            $this->load->view('template/footer');
+        }else{
+            $data['user'] = $this->model_peminjam->cekData(['username' => $this->session->userdata('username')])->row_array();
+            $username = $this->session->userdata('username');
+            $this->db->select('username, id');
+            $this->db->where('username', $username);//
+            $this->db->from('tb_user');
+            $query = $this->db->get()->row();
+            //return print($username);      
+            $id = $query->id;
+            $password = $this->input->post('password');
+            $nama = $this->input->post('nama');
+            $kelas = $this->input->post('kelas');
+            $no_telp = $this->input->post('no_telp');
+            $alamat = $this->input->post('alamat');
+            
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['upload_path'] = './assets/img/profile/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '3000';
+                $config['max_width'] = '1024';
+                $config['max_height'] = '1000';
+                $config['file_name'] = 'pro' . time();
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('image')) {
+                $gambar_lama =trim($data['user']['image']);
+                if ($gambar_lama != 'default.jpg') {
+                    $path = './assets/img/profile/'.$gambar_lama;
+                    chmod($path, 0777);
+                    unlink($path); 
+                    //unlink(FCPATH . 'assets/img/profile/' . $gambar_lama);
+                }
+            $gambar_baru = $this->upload->data('file_name');
+            $this->db->set('image', $gambar_baru);
+            }else{ 
+                $this->session->set_flashdata('Message', 'Foto gagal di update !');
+            }
+        }
+        
+            $data = array (
+                'nama_peminjam' => $nama,
+                'kelas' => $kelas,
+                'no_telp' => $no_telp,
+                'alamat' => $alamat    
+                );   
+            $data1 = array (
+                'nama_peminjam' => $nama,
+                'kelas' => $kelas,
+                'no_telp' => $no_telp,
+                'alamat' => $alamat,
+                'image' => $gambar_baru    
+                );
+            $data2 = array (
+                'password' =>  $this->hash_password($password),
+                'nama_peminjam' => $nama,
+                'kelas' => $kelas,
+                'no_telp' => $no_telp,
+                'alamat' => $alamat       
+                ); 
+            $where = array ('id' => $id);
 
+            if($password != null){
+                $this->model_peminjam->update($where, $data2, 'tb_user');
+            }
+            elseif($gambar_baru != null){
+                $this->model_peminjam->update($where, $data1, 'tb_user');
+            }
+            else{
+            $this->model_peminjam->update($where, $data, 'tb_user');
+            }
+            $this->session->set_flashdata('Message', 'Data berhasil di update !');
+            redirect('peminjam/profile');
+        }
+    }
+    //fungsi untuk hash_password
+    private function hash_password($password){
+        return password_hash($password, PASSWORD_BCRYPT);
+    }
+    //fungsi untuk menampilkan list barang
+    function list(){
+        $data['tb_barang'] = $this->model_peminjam->list()->result();
+        $this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('peminjam/view_barang', $data);
+		$this->load->view('template/footer');
+    }
+    //fungsi untuk menampilkan halaman tambah peminjaman user
 	function add($id){
 		$where = array('id_barang' => $id);
         $data['tb_barang'] = $this->model_peminjam->pinjam($where,'tb_barang')->result();
         $this->load->view('template/header');
 		$this->load->view('template/sidebar');
 		$this->load->view('peminjam/view_peminjaman', $data);
-
     }
-    
-    function detail($id){
-		$where = array('id_peminjaman' => $id);
-        $data['view_laporan'] = $this->model_peminjam->detail($where,'view_laporan')->result();
-        $this->load->view('template/header');
-		$this->load->view('template/sidebar');
-		$this->load->view('peminjam/view_detail', $data);
-        $this->load->view('template/footer');
-
-    }
-    
-    function laporan(){
-        $username = $this->session->userdata('username');
-        $this->db->select('username, id');
-        $this->db->where('username', $username);//
-        $this->db->from('tb_user');
-        $query = $this->db->get()->row();
-
-        $id = $query->id;
-
-        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
-        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
-            'status =' => 'Di pinjam',
-            'id_user =' => $id))->result();
-
-        $this->load->view('template/header');
-		$this->load->view('template/sidebar');
-	    $this->load->view('peminjam/view_laporan', $data);
-		$this->load->view('template/footer');
-      
-    }
-
-    function laporan2(){
-        $username = $this->session->userdata('username');
-        $this->db->select('username, id');
-        $this->db->where('username', $username);//
-        $this->db->from('tb_user');
-        $query = $this->db->get()->row();
-
-        $id = $query->id;
-
-        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
-        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
-            'status =' => 'Di booking',
-            'id_user =' => $id))->result();
-
-        $this->load->view('template/header');
-		$this->load->view('template/sidebar');
-	    $this->load->view('peminjam/view_laporan', $data);
-		$this->load->view('template/footer');
-      
-    }
-
-    function laporan3(){
-        $username = $this->session->userdata('username');
-        $this->db->select('username, id');
-        $this->db->where('username', $username);//
-        $this->db->from('tb_user');
-        $query = $this->db->get()->row();
-
-        $id = $query->id;
-
-        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
-        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
-            'status =' => 'Kembali',
-            'id_user =' => $id))->result();
-
-        $this->load->view('template/header');
-		$this->load->view('template/sidebar');
-	    $this->load->view('peminjam/view_laporan', $data);
-		$this->load->view('template/footer');
-      
-    }
-
-    function keuangan(){
-        $username = $this->session->userdata('username');
-        $this->db->select('username, id');
-        $this->db->where('username', $username);//
-        $this->db->from('tb_user');
-        $query = $this->db->get()->row();
-
-        $id = $query->id;
-
-        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
-        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
-            'status =' => 'Penggantian Barang',
-            'id_user =' => $id))->result();
-
-        $this->load->view('template/header');
-		$this->load->view('template/sidebar');
-	    $this->load->view('peminjam/view_laporan_pembayaran', $data);
-		$this->load->view('template/footer');
-    }
-
-	function save()
-    {   
+    //fungsi untuk proses peminjaman user
+    function save(){   
 		$username = $this->session->userdata('username');
         $this->db->select('username, id');
         $this->db->where('username', $username);//
         $this->db->from('tb_user');
         $query = $this->db->get()->row();
-     // return print($username);
-        
+        //return print($username);
         $id = $query->id;
         $id_barang = $this->input->post('id_barang');
         $jumlah_pinjam = $this->input->post('jumlah_pinjam');
@@ -185,127 +175,102 @@ class Peminjam extends CI_Controller {
         $oldStok = $query1->stok;
         $newStok = $oldStok - $jumlah_pinjam;
 
-        $stok = array (
-            'stok' => $newStok
-        );
-
-        $where = array (
-            'id_barang' => $id_barang
-        );
-
-        $this->model_peminjam->save($data, 'tb_peminjaman');
-        $this->model_peminjam->update($where, $stok, 'tb_barang');
-        redirect('peminjam/list');
+        $stok = array ('stok' => $newStok);
+        $where = array ('id_barang' => $id_barang);
+        
+        if($oldStok<$jumlah_pinjam){
+            $this->session->set_flashdata('Message1', 'Jumlah peminjaman melebihi stok!');
+            redirect('peminjam/list');
+        }
+        else{
+            $this->model_peminjam->save($data, 'tb_peminjaman');
+            $this->model_peminjam->update($where, $stok, 'tb_barang');
+            $this->session->set_flashdata('Message', 'Data peminjaman berhasil di proses !');
+            redirect('peminjam/list');
+        }
     }
-
-    public function profile_update()
-    {   
-        $this->form_validation->set_rules('password', 'Password', 'trim|min_length[8]');
-        if ($this->form_validation->run() == false) {
-			$username = $this->session->userdata('username');
-            $this->db->select('username, id');
-            $this->db->where('username', $username);//
-            $this->db->from('tb_user');
-            $query = $this->db->get()->row();
-
-            $id = $query->id;   
-
-            //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
-            $data['tb_user'] = $this->db->get_where('tb_user', array(
-                'id =' => $id))->result();
-            
-            $this->load->view('template/header');
-            $this->load->view('template/sidebar');
-            $this->load->view('peminjam/view_profile', $data);
-            $this->load->view('template/footer');
-        } else {
-        $data['user'] = $this->model_peminjam->cekData(['username' => $this->session->userdata('username')])->row_array();
-		$username = $this->session->userdata('username');
+    //fungsi untuk melihat detail peminjaman
+    function detail($id){
+		$where = array('id_peminjaman' => $id);
+        $data['view_laporan'] = $this->model_peminjam->detail($where,'view_laporan')->result();
+        $this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('peminjam/view_detail', $data);
+        $this->load->view('template/footer');
+    }
+    //fungsi untuk menampilkan data peminjaman status = dipinjam
+    function laporan(){
+        $username = $this->session->userdata('username');
         $this->db->select('username, id');
         $this->db->where('username', $username);//
         $this->db->from('tb_user');
         $query = $this->db->get()->row();
-     // return print($username);
-        
         $id = $query->id;
-        $password = $this->input->post('password');
-        $nama = $this->input->post('nama');
-        $kelas = $this->input->post('kelas');
-        $no_telp = $this->input->post('no_telp');
-        $alamat = $this->input->post('alamat');
-        
-        $upload_image = $_FILES['image']['name'];
-        if ($upload_image) {
-        $config['upload_path'] = './assets/img/profile/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '3000';
-        $config['max_width'] = '1024';
-        $config['max_height'] = '1000';
-        $config['file_name'] = 'pro' . time();
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload('image')) {
-        $gambar_lama =trim($data['user']['image']);
-        if ($gambar_lama != 'default.jpg') {
-            $path = './assets/img/profile/'.$gambar_lama;
-            chmod($path, 0777);
-            unlink($path);
-            
-        //unlink(FCPATH . 'assets/img/profile/' . $gambar_lama);
-        }
-        $gambar_baru = $this->upload->data('file_name');
-        $this->db->set('image', $gambar_baru);
-        } else { }
-        }
-    
-        $data = array (
-            'nama_peminjam' => $nama,
-            'kelas' => $kelas,
-            'no_telp' => $no_telp,
-            'alamat' => $alamat    
-            );
-            
-        $data1 = array (
-            'nama_peminjam' => $nama,
-            'kelas' => $kelas,
-            'no_telp' => $no_telp,
-            'alamat' => $alamat,
-            'image' => $gambar_baru    
-            );
+        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
+            'status =' => 'Di pinjam',
+            'id_user =' => $id))->result();
 
-        $data2 = array (
-            'password' =>  $this->hash_password($password),
-            'nama_peminjam' => $nama,
-            'kelas' => $kelas,
-            'no_telp' => $no_telp,
-            'alamat' => $alamat       
-            ); 
-
-        $where = array (
-            'id' => $id
-        );
-
-        if($password != null){
-
-            $this->model_peminjam->update($where, $data2, 'tb_user');
-        }
-        elseif($gambar_baru != null){
-
-            $this->model_peminjam->update($where, $data3, 'tb_user');
-        }
-        else{
-
-            $this->model_peminjam->update($where, $data, 'tb_user');
-        
-        }
-        $this->session->set_flashdata('Message', 'Data berhasil di update !');
-
-        redirect('peminjam/profile');
+        $this->load->view('template/header');
+		$this->load->view('template/sidebar');
+	    $this->load->view('peminjam/view_laporan', $data);
+		$this->load->view('template/footer');
+      
     }
-}
-    
+    //fungsi untuk menampilkan data peminjaman status = dibooking
+    function laporan2(){
+        $username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+        $id = $query->id;
+        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
+            'status =' => 'Di booking',
+            'id_user =' => $id))->result();
 
-    private function hash_password($password) {
-        return password_hash($password, PASSWORD_BCRYPT);
-       }
- 
+        $this->load->view('template/header');
+		$this->load->view('template/sidebar');
+	    $this->load->view('peminjam/view_laporan', $data);
+		$this->load->view('template/footer');
+      
+    }
+    //fungsi untuk menampilkan data peminjaman status = Kembali
+    function laporan3(){
+        $username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+        $id = $query->id;
+        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
+            'status =' => 'Kembali',
+            'id_user =' => $id))->result();
+
+        $this->load->view('template/header');
+		$this->load->view('template/sidebar');
+	    $this->load->view('peminjam/view_laporan', $data);
+		$this->load->view('template/footer');
+      
+    }
+    //fungsi untuk menampilkan data peminjaman status = Penggantian Barang
+    function keuangan(){
+        $username = $this->session->userdata('username');
+        $this->db->select('username, id');
+        $this->db->where('username', $username);//
+        $this->db->from('tb_user');
+        $query = $this->db->get()->row();
+        $id = $query->id;
+        //$data['view_laporan'] = $this->model_peminjam->list_peminjaman($where,'view_laporan')->result();
+        $data['view_laporan'] = $this->db->get_where('view_laporan', array(
+            'status =' => 'Penggantian Barang',
+            'id_user =' => $id))->result();
+
+        $this->load->view('template/header');
+		$this->load->view('template/sidebar');
+	    $this->load->view('peminjam/view_laporan_pembayaran', $data);
+		$this->load->view('template/footer');
+    }
 }
