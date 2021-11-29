@@ -194,10 +194,11 @@ class Admin extends CI_Controller {
 				);
 				$exe = $this->model_peminjam->upbarang('tb_barang',$data,$id);
 				if($exe){
-					$this->session->set_flashdata('success', 'Berhasil disimpan');
+					$this->session->set_flashdata('message', 'Data barang berhasil disimpan');
 					redirect(site_url('admin/list_barang'));
 				}else{
-					echo "gagal";
+					$this->session->set_flashdata('message1', 'Data barang gagal di tambahkan');
+				redirect(site_url('admin/list_barang'));
 				}
 			}else{
 				$upload_gambar = array('upload_data' => $this->upload->data());
@@ -245,12 +246,12 @@ class Admin extends CI_Controller {
 				$this->session->set_flashdata('message', 'Berhasil dihapus');
 				redirect(site_url('admin/list_barang'));
 			}else{
-				$this->session->set_flashdata('message1', 'Gagal dihapus');
+				$this->session->set_flashdata('message1', 'Data gagal dihapus, karena masih ada peminjaman');
 				redirect(site_url('admin/list_barang'));
 			}
 		}
 		else{
-			$this->session->set_flashdata('message1', 'Gagal dihapus');
+			$this->session->set_flashdata('message1', 'Data gagal dihapus, karena masih ada peminjaman');
 			redirect(site_url('admin/list_barang'));
 		}
 	}
@@ -268,6 +269,7 @@ class Admin extends CI_Controller {
 		$where = array('id_peminjaman' => $id);
 		$data = array ('status' => 'Di pinjam');
         $this->model_peminjam->update($where, $data, 'tb_peminjaman');
+		$this->session->set_flashdata('Message', 'Data peminjaman berhasil di ACC !');
         redirect('admin/booking');
     }
 	//fungsi untuk menampilkan halaman ubah profile

@@ -11,7 +11,7 @@
   <?php if($user['image'] == 'default.png'){ ?>
     <img src="<?= base_url('assets/img/') . $user['image']; ?>" class="card-img" alt="...">
   <?php }else{?>
-    <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="card-img" alt="..." style="height:100%;">
+    <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="card-img" alt="..." style="">
   <?php } ?>
  </div>
  <div class="col-md-8">

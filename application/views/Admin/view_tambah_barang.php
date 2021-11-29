@@ -46,9 +46,9 @@
   						<i class="fa fa-save"></i> Simpan
   						</button>
 
-							<button type="submit" class="btn btn-primary btn-sm">
-							<i class="fa fa-arrow-circle-left"></i> Kembali
-							</button>
+							<a href="<?php echo site_url('admin/list_barang/')?>"><button type="button" class="btn btn-primary btn-sm">
+						  <i class="fa fa-arrow-circle-left"></i> Kembali
+						  </button></a>
 							</div>
 						  </div>
 

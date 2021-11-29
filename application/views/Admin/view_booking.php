@@ -5,6 +5,12 @@
     <li class="breadcrumb-item active" aria-current="page">Data Booking</li>
   </ol>
 </nav> 
+<?php if($this->session->flashdata('Message')){?>
+  <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 10px; width:100vh;">
+    <strong><?= $this->session->flashdata('Message'); ?>!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<?php } ?>
 	<div class="container text-center">
 		<table class="table table-hover table-light">
       <thead>
