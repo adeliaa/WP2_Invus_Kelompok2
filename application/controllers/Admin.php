@@ -12,9 +12,11 @@ class Admin extends CI_Controller {
 	}
  
 	function index(){
+		$data['view_laporan'] = $this->db->get_where('view_laporan', array(
+			'status =' => 'Di pinjam', 'tanggal_pinjam=' => date('Y-m-d')))->result();
 		$this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/view_beranda');
+		$this->load->view('admin/view_beranda', $data);
 		$this->load->view('admin/footer');
 	}
 
@@ -43,6 +45,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/view_editAnggota', $data);
+		$this->load->view('admin/footer');
     }
 	//fungsi untuk proses update anggota
 	public function update_anggota($id){   
@@ -369,15 +372,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/view_peminjaman', $data);
 		$this->load->view('admin/footer');
 	}
-	//fungsi untuk menampilkan list peminjaman berdasarkan tanggal saat ini
-	function list_peminjaman_harian(){
-		$data['view_laporan'] = $this->db->get_where('view_laporan', array(
-			'status =' => 'Di pinjam', 'tanggal_pinjam=' => date('Y-m-d')))->result();
-		$this->load->view('admin/header');
-		$this->load->view('admin/sidebar');
-		$this->load->view('admin/view_peminjaman', $data);
-		$this->load->view('admin/footer');
-	}
+
 	//fungsi untuk menampilkan list pengembalian 
 	function list_pengembalian(){
 		$data['view_laporan'] = $this->db->get_where('view_laporan', array('status =' => 'Kembali'))->result();

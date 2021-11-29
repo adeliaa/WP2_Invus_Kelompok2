@@ -11,7 +11,6 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <?php } ?>
-
 <?php if($this->session->flashdata('message1')){?>
   <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 10px; width:100vh;">
     <strong><?= $this->session->flashdata('message1'); ?>!</strong>
@@ -19,11 +18,11 @@
   </div>
 <?php } ?>
 
-		<div class="container text-center">
-      <div class="col-md-1" style="margin-bottom:2%">
-        <a href="<?= site_url('admin/add_barang'); ?>" class="btn btn-dark rounded">Tambah Barang</a>
-      </div>
-		<table class="table table-hover table-light">
+<div class="container text-center">
+  <div class="col-md-1" style="margin-bottom:2%">
+    <a href="<?= site_url('admin/add_barang'); ?>" class="btn btn-dark rounded">Tambah Barang</a>
+  </div>
+	<table class="table table-hover table-light">
   <thead>
     <tr>
       <th scope="col">Foto Barang</th>
@@ -53,4 +52,4 @@
     <?php } ?>
   </tbody>
 </table>
-    </div>
+</div>

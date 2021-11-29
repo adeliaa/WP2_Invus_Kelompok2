@@ -16,7 +16,7 @@
                 <ul class="nav navbar-nav">
                     <h3 class="menu-title">Menu</h3><!-- /.menu-title -->
                     <li>
-                        <a href="<?php echo site_url('admin/index')?>"> <i class="menu-icon fa fa-home"></i>Beranda </a>
+                        <a href="<?php echo site_url('admin/index')?>"><i class="menu-icon fa fa-home"></i>Beranda </a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('admin/list_barang')?>"> <i class="menu-icon fa fa-archive"></i>Data Barang</a>
@@ -54,7 +54,6 @@
 
         <!-- Header-->
         <header id="header" class="header">
-
             <div class="header-menu">
 
                 <div class="col-sm-7">

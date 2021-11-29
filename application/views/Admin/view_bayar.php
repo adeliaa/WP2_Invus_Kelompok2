@@ -7,20 +7,18 @@
 </nav>
 <div class="container">
     <div class="card">
-
         <div class="card-body card-block">
             <?php
             foreach ($view_laporan as $detail) {
                 $date = date('Y-m-d');
             ?>
 
-            <form action="<?php echo site_url('admin/update_bayar'); ?>" method="post" enctype="multipart/form-data"
-                class="form-horizontal">
+            <form action="<?php echo site_url('admin/update_bayar'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
                 <div class="row form-group">
                     <input type="hidden" name="id" value="<?= $detail->id_barang ?>">
                     <div class="col col-md-3"><label for="id_peminjaman" class=" form-control-label">ID</label></div>
                     <div class="col-12 col-md-9"><input type="text" id="id_peminjaman" name="id_peminjaman"
-                            value="<?php echo $detail->id_peminjaman; ?>" class="form-control" readonly></div>
+                    value="<?php echo $detail->id_peminjaman; ?>" class="form-control" readonly></div>
                 </div>
 
                 <div class="row form-group">
@@ -66,7 +64,6 @@
                             class="form-control" value="<?php echo $detail->kondisi_saat_pinjam; ?>" readonly></div>
                 </div>
 
-
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="denda" class=" form-control-label">Biaya Pengantian</label>
                     </div>
@@ -74,16 +71,11 @@
                             value="<?php echo $detail->biaya_penggantian_barang; ?>" readonly></div>
                 </div>
 
-
-
                 <div class="row form-group">
                     <div class="col col-md-3"></div>
                     <div class="col-12 col-md-9">
                         <button type="submit" class="btn btn-success btn-sm">
                             <i class="fa fa-save"></i> Simpan
-                        </button>
-                        <button type="reset" class="btn btn-danger btn-sm">
-                            <i class="fa fa-ban"></i> Reset
                         </button>
                         <a href="<?php echo site_url('admin/list_pengembalian/') ?>"><button type="button"
                                 class="btn btn-primary btn-sm">
@@ -91,51 +83,14 @@
                             </button></a>
                     </div>
                 </div>
-
             </form>
             <?php
             }
             ?>
         </div>
-
-
     </div>
 </div>
 
 
 
 
-<script src="<?php echo base_url('assets/js/vendor/jquery-2.1.4.min.js'); ?>"> </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js">
-</script>
-<script src="<?php echo base_url('assets/js/plugins.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/lib/chart-js/Chart.bundle.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/dashboard.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/widgets.js') ?>"></script>
-<script src="<?php echo base_url('assets/js/lib/vector-map/jquery.vmap.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/lib/vector-map/jquery.vmap.min.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/lib/vector-map/jquery.vmap.sampledata.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/lib/vector-map/country/jquery.vmap.world.js'); ?>"></script>
-<script>
-(function($) {
-    "use strict";
-
-    jQuery('#vmap').vectorMap({
-        map: 'world_en',
-        backgroundColor: null,
-        color: '#ffffff',
-        hoverOpacity: 0.7,
-        selectedColor: '#1de9b6',
-        enableZoom: true,
-        showTooltip: true,
-        values: sample_data,
-        scaleColors: ['#1de9b6', '#03a9f5'],
-        normalizeFunction: 'polynomial'
-    });
-})(jQuery);
-</script>
-
-</body>
-
-</html>

@@ -19,7 +19,7 @@
   </div>
 <?php } ?>
 		<div class="container text-center">
-		<table class="table table-hover table-light">
+		<table class="table table-hover table-light" style="10px">
   <thead>
     <tr>
       <th scope="col">Foto Barang</th>

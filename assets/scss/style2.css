@@ -1258,7 +1258,7 @@ textarea {
 /* DropDown */
 
 .dropbtn {
-	background-color: #32485c;
+	background-color: #8058a5;
 	border: none;
 	display: inline-flex;
 	color: white;
@@ -1306,6 +1306,13 @@ textarea {
 }
 
 /* Sidebar */
+.container {
+	width: 1090px;
+}
+
+table {
+	width: 10px;
+}
 
 .basix-container {
 	display: table;
@@ -1425,10 +1432,11 @@ aside.left-panel {
 .navbar .navbar-nav li>a .menu-icon {
 	color: white;
 	float: left;
-	margin-top: 8px;
-	width: 55px;
+	margin-top: 7px;
+	width: 30px;
 	text-align: left;
 	z-index: 9;
+	font-size: 15px;
 }
 
 .navbar .navbar-nav li>a .menu-title-text {

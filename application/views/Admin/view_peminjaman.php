@@ -4,13 +4,13 @@
         <li class="breadcrumb-item active" aria-current="page">Data Peminjaman</li>
     </ol>
 </nav>
-<div class="dropdown2" style="padding-left:15px;">
+<!--<div class="dropdown2" style="padding-left:15px;">
     <button class="dropbtn" style="border-radius:5px;"><i class="fa fa-arrow-circle-o-down"> List</i></button>
     <div class="dropdown2-content">
-      <a href="<?php echo base_url('admin/list_peminjaman')?>">List Keseluruhan</a>
-      <a href="<?php echo base_url('admin/list_peminjaman_harian')?>">List Perhari</a>
+      <a href="<?php //echo base_url('admin/list_peminjaman')?>">List Keseluruhan</a>
+      <a href="<?php //echo base_url('admin/list_peminjaman_harian')?>">List Perhari</a>
     </div>
-  </div>
+  </div>-->
 
 <div class="container text-center">
     <table class="table table-hover table-light">
@@ -23,7 +23,6 @@
                 <th scope="col">Tanggal Pengembalian</th>
                 <th scope="col">Status</th>
                 <th scope="col">Aksi</th>
-
             </tr>
         </thead>
         <tbody>
@@ -38,7 +37,6 @@
                     <td><?php echo $pinjam->tanggal_pengembalian ?></td>
                     <td><?php echo $pinjam->status ?></td>
                     <td><a class="btn btn-success btn-sm" href="<?php echo site_url('admin/pengembalian/' . $pinjam->id_peminjaman); ?>" class="btn btn-small" style="border-radius:16px;"><i class="fa fa-share-square-o"></i> kembali</a>
-
                 </tr>
             <?php } ?>
         </tbody>

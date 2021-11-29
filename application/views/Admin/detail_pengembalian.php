@@ -7,13 +7,11 @@
 </nav>
 <div class="container">
     <div class="card">
-
         <div class="card-body card-block">
             <?php
             foreach ($pengembalian as $detail) {
                 
             ?>
-
                 <form action="<?php echo site_url('admin/update_pengembalian'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="id_peminjaman" class=" form-control-label">id</label></div>
@@ -85,34 +83,12 @@
 							</button></a>
                         </div>
                     </div>
-
                 </form>
-            <?php
-            }
-            ?>
+            <?php }?>
         </div>
-
-
     </div>
 </div>
-
-
-
-
-<script src="<?php echo base_url('assets/js/vendor/jquery-2.1.4.min.js'); ?>"> </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js">
-    </script>
-    <script src="<?php echo base_url('assets/js/plugins.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/lib/chart-js/Chart.bundle.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/dashboard.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/widgets.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/lib/vector-map/jquery.vmap.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/lib/vector-map/jquery.vmap.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/lib/vector-map/jquery.vmap.sampledata.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/lib/vector-map/country/jquery.vmap.world.js'); ?>"></script>
-    <script>
-        
+    <script src="<?php echo base_url('assets/js/vendor/jquery-2.1.4.min.js'); ?>"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>    
     </body>
-
-    </html>
+</html>
