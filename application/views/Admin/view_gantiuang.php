@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?php echo site_url('admin/index'); ?>">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data Booking</li>
+        <li class="breadcrumb-item active" aria-current="page">Data penggantian barang</li>
     </ol>
 </nav><?php if ($this->session->flashdata('Message3')) { ?>
 <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 10px; width:100vh;">

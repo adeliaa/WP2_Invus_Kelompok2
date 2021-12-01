@@ -186,7 +186,7 @@ class Peminjam extends CI_Controller {
             $this->model_peminjam->save($data, 'tb_peminjaman');
             $this->model_peminjam->update($where, $stok, 'tb_barang');
             $this->session->set_flashdata('Message', 'Data peminjaman berhasil di proses !');
-            redirect('peminjam/list');
+            redirect('peminjam/laporan2');
         }
     }
     //fungsi untuk melihat detail peminjaman

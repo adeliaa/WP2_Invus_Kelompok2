@@ -5,6 +5,14 @@
     <li class="breadcrumb-item active" aria-current="page">Data Peminjaman</li>
   </ol>
 </nav>
+
+<?php if($this->session->flashdata('Message')){?>
+  <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 10px; width:100vh;">
+    <strong><?= $this->session->flashdata('Message'); ?>!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<?php } ?>
+
   <div class="dropdown2" style="padding-left:15px;">
     <button class="dropbtn" style="border-radius:5px;"><i class="fa fa-arrow-circle-o-down"> Status</i></button>
     <div class="dropdown2-content">

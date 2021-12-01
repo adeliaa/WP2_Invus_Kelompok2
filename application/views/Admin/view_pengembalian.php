@@ -114,8 +114,3 @@
         </div>
     </div>
 </div>
-
-<script src="<?php echo base_url('assets/js/vendor/jquery-2.1.4.min.js'); ?>"> </script>
-    </body>
-
-    </html>
